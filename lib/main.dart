@@ -1,6 +1,11 @@
+import 'package:catcher/catcher.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:foxlearn/tools/services/error_handling/catcher-config.dart';
 import 'package:foxlearn/views/appliction.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:sizer/sizer.dart';
 
 /// CREATED BY ABD ALQADER ALNAJJAR 2021 / 4 / 9
 
@@ -39,6 +44,6 @@ void main() async {
     ///Run App is not exist because i have use the catcher library
     runApp(DevicePreview(
       builder: (_) => init(),
-      enabled: true,
+      enabled: false,
     ));
 }

@@ -4,15 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foxlearn/controllers/app_controller.dart';
 import 'package:foxlearn/tools/constant/fonts.dart';
 import 'package:foxlearn/tools/constant/strings.dart';
+import 'package:foxlearn/tools/widgets/lottie_loading.dart';
+import 'package:foxlearn/views/welcome/welcome_screen.dart';
 import 'package:get/get.dart';
-import 'package:get_up/Controllers/app_controller.dart';
-import 'package:get_up/Helper/Routes/app_pages.dart';
-import 'package:get_up/Helper/Themes/fonts.dart';
-import 'package:get_up/Helper/Themes/my-theme.dart';
-import 'package:get_up/Helper/Utils/Constant/strings.dart';
-import 'package:get_up/Helper/Widgets/lottie_loading.dart';
-import 'package:get_up/View/init_screen.dart';
-import 'package:neumorphic/neumorphic.dart' as neu;
 
 class Application extends GetView<AppController> {
   @override
@@ -43,14 +37,10 @@ class Application extends GetView<AppController> {
       locale: Locale('ar', 'SY'),
 
       /// Page Sections ----------------------------------
-      getPages: AppPages.routes,
-      home: InitScreen(
-        child: controller.obx(
-          (state) => state,
-          onLoading: Scaffold(
-            body: Center(child: LottieLoading()),
-          ),
-        ),
+      home: controller.obx(
+        //    (state) => state,
+        (state) => WelcomeScreen(),
+        onLoading: Scaffold(body: Center(child: LottieLoading())),
       ),
     );
   }
