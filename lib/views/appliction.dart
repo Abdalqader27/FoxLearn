@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:foxlearn/controllers/app_controller.dart';
 import 'package:foxlearn/tools/constant/fonts.dart';
 import 'package:foxlearn/tools/constant/strings.dart';
+import 'package:foxlearn/tools/translations/messages.dart';
 import 'package:foxlearn/tools/widgets/lottie_loading.dart';
 import 'package:foxlearn/views/welcome/welcome_screen.dart';
 import 'package:get/get.dart';
@@ -26,15 +27,9 @@ class Application extends GetView<AppController> {
       /// Theme and localizations ---------------------
       theme: ThemeData(fontFamily: AppFonts.sstArabicFont),
       themeMode: ThemeMode.light,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        // Add global cupertino localiztions.
-      ],
-      supportedLocales: [Locale('ar', 'SY')],
+      translations: Messages(),
       locale: Locale('ar', 'SY'),
+      fallbackLocale: Locale('ar', 'SY'),
 
       /// Page Sections ----------------------------------
       home: controller.obx(

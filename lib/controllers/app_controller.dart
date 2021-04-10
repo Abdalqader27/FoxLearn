@@ -1,7 +1,5 @@
-import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:foxlearn/tools/constant/keys.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -12,6 +10,7 @@ class AppController extends GetxController with StateMixin<Widget> {
   @override
   void onInit() {
     super.onInit();
+    change(null, status: RxStatus.success());
     //listenWidget().then((value) => change(value, status: RxStatus.success()));
   }
 

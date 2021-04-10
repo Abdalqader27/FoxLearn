@@ -20,9 +20,9 @@ dependencies:
   lottie: any
   get_storage: any
   sizer: ^1.1.8
-  device_preview: any
   tuple: ^1.0.3
-  flutter_windowmanager: ^0.0.2
+  language_pickers: ^0.2.0+1
+  flutter_hooks: ^0.16.0
 
 
 dev_dependencies:
