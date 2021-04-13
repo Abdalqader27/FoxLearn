@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   static const Color primaryColor = Color(0xFFFCF6ED);
   static const Color blue = Colors.blueAccent;
   static const Color secondaryColor = Color(0xFFFFCA5D);
@@ -21,7 +19,7 @@ class AppColors {
   static const Color LIGHT_BLACK = Color(0xff3E3E3E);
   static const Color LIGHT_Green = Color(0xff92E3A9);
   static const Color LIGHT_Red = Color(0xffef9a9a);
-  static const Color DARK_ORANGE= Color(0xffef6c00);
+  static const Color DARK_ORANGE = Color(0xffef6c00);
   static const Color purple = Color(0xffB090E7);
   static const Color darkPurple = Color(0xffB090E7);
   static const Color fadedPurple = Color(0xffE0DEF6);
@@ -35,4 +33,13 @@ class AppColors {
   static const Color cardBlue = Color(0xffE5F0F8);
 
   static const Color scaffoldBackground = Color(0xffF5F5F5);
+  static const Color kBlue = Color(0xff8E97FD);
+  static const Color kDarkBlue = Color(0xff7583CA);
+  static const Color kGrey = Color(0xffA1A4B2);
+  static const Color kSomo = Color(0xffFAF8F5);
+  static const Color kLightGrey = Color(0xffF2F3F7);
+  static const Color kLightYellow = Color(0xffFFECCC);
+  static const Color kDark = Color(0xff3F414E);
+  static const Color kBorderColor = Color(0xffA1A4B2);
+  static const Color kSoDarkBlue = Color(0xff03174c);
 }

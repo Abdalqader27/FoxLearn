@@ -38,6 +38,7 @@ flutter:
     - assets/
     - assets/lotti/
     - assets/svg/
+    - images/
 
   fonts:
     - family: sst-arabic

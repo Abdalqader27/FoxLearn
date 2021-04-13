@@ -60,33 +60,30 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
     isVisible ??= widget.iconVisibility;
     obscured ??= widget.obscureText;
 
-    return Material(
-      color: Colors.white,
-      child: Container(
-        margin: EdgeInsets.only(bottom: 1.0.h, top: 1.0.h),
-        padding: EdgeInsets.all(10.0),
-        height: 62,
-        width: 350,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            border: Border.all(width: 2.5, color: widget.borderColor),
-            borderRadius: BorderRadius.circular(15),
-            color: widget.color),
-        child: TextFormField(
-          controller: widget.controller,
-          onChanged: (value) => changeVisibility(value),
-          obscureText: obscured,
-          keyboardType: widget.textInputType,
-          // style: kMiddleTextStyle,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: widget.hint,
-              suffixIcon: Visibility(
-                visible: isVisible,
-                child: IconButton(icon: icon, onPressed: changeIcon),
-              ),
+    return Container(
+      margin: EdgeInsets.only(bottom: 1.0.h, top: 1.0.h),
+      padding: EdgeInsets.all(10.0),
+      height: 62,
+      width: 350,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          border: Border.all(width: 2.5, color: widget.borderColor),
+          borderRadius: BorderRadius.circular(15),
+          color: widget.color),
+      child: TextFormField(
+        controller: widget.controller,
+        onChanged: (value) => changeVisibility(value),
+        obscureText: obscured,
+        keyboardType: widget.textInputType,
+        // style: kMiddleTextStyle,
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: widget.hint,
+            suffixIcon: Visibility(
+              visible: isVisible,
+              child: IconButton(icon: icon, onPressed: changeIcon),
+            ),
      //         hintStyle: kMiddleTextStyle.copyWith(color: kGrey)
-          ),
         ),
       ),
     );

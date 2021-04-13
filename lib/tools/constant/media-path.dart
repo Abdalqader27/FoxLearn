@@ -36,4 +36,20 @@ const String Teacher = "assets/svg/pana.svg";
 
 const String Loading_Lotti = "assets/lotti/loading.json";
 
-
+///signUpIn
+String line = 'images/line.svg';
+String bgSignUpIn = 'images/back_ground_sign_up_sign_in.svg';
+String girlSignUPIn = 'images/girl_sign_up_sign_in.svg';
+///signUp
+String shapesSignUP= 'images/shapes_group.svg';
+String shapeSignUP= 'images/shape.svg';
+String faceBook= 'images/facebook.svg';
+String google= 'images/google.svg';
+String logo = 'images/logoo.svg';
+String line2 = 'images/Line2.svg';
+String rectangle = 'images/rectangle.svg';
+String rectangle2 = 'images/rectangle2.svg';
+String player = 'images/player.svg';
+String heart = 'images/heartV.svg';
+String signInBg = 'images/signInBg.svg';
+String cloudAndMoon = 'images/cloudAndMoon.svg';
