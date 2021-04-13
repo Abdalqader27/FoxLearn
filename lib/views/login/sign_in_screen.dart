@@ -71,7 +71,6 @@ class SignInScreen extends HookWidget with SignImpl {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.primaryColor,
         body: PrimaryBackground(
           child: Stack(
             children: [
@@ -94,10 +93,10 @@ class SignInScreen extends HookWidget with SignImpl {
                                   color: AppColors.kGrey)))),
                   Column(children: textFields()),
                   RoundedButton(
-                      borderColor: AppColors.kBlue,
-                      color: AppColors.kBlue,
+                      borderColor: AppColors.primaryColor,
+                      color: AppColors.primaryColor,
                       myChild: Text("sLog",
-                          style: kSmallTextStyle.copyWith(color: Colors.white)),
+                          style: kSmallTextStyle.copyWith(color: AppColors.Black15)),
                       onTap: () => Navigator.pushNamed(context, '/WelcomePage')),
                   SizedBox(height: 20),
                   Align(
@@ -111,7 +110,7 @@ class SignInScreen extends HookWidget with SignImpl {
                         child: InkWell(
                             child: Text(":",
                                 style: kSmallTextStyle.copyWith(
-                                    color: AppColors.kBlue)),
+                                    color: AppColors.primaryColor)),
                             onTap: () =>
                                 Navigator.pushNamed(context, '/SignUpPage')))
                   ]),
