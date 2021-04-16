@@ -30,7 +30,7 @@ class WelcomeButtons {
               child: Text('Start'.tr,
                   style: TextStyle(fontWeight: FontWeight.bold))),
           style: TextButton.styleFrom(
-              elevation: 3,
+              elevation: 0.5,
               enableFeedback: true,
               primary: AppColors.Black15,
               animationDuration: Duration(milliseconds: 1000),
@@ -50,7 +50,7 @@ class WelcomeButtons {
           style: TextButton.styleFrom(
               enableFeedback: true,
               primary: AppColors.Black15,
-              elevation: 3,
+              elevation: 1 / 2,
               animationDuration: Duration(milliseconds: 1000),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),

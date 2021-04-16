@@ -14,7 +14,7 @@ class RoundedButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Card(
-          elevation: 0.15,
+          elevation: 0.5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           clipBehavior: Clip.antiAlias,
           child: Container(
