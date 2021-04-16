@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class  SignFunctions{
+class SignFunctions {
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
@@ -17,11 +17,7 @@ class  SignFunctions{
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regExp = RegExp(pattern);
     bool emailValid = regExp.hasMatch(value);
-    if (emailValid)
-      visible = true;
-    else
-      visible = false;
-    return emailValid;
+    return visible = (emailValid);
   }
 
   bool changeVisibilityOfPassword() {

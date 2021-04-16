@@ -3,6 +3,7 @@ import 'package:foxlearn/tools/theme/colors.dart';
 import 'package:foxlearn/tools/theme/text_styles.dart';
 import 'package:foxlearn/tools/widgets/circle_widget.dart';
 import 'package:foxlearn/tools/widgets/rounded_button.dart';
+import 'package:foxlearn/views/home/home_screen.dart';
 import 'package:get/get.dart';
 
 class SignImpWidget {
@@ -34,5 +35,5 @@ class SignImpWidget {
       color: AppColors.primaryColor,
       myChild: Text("sLog",
           style: kSmallTextStyle.copyWith(color: AppColors.Black15)),
-      onTap: () => {});
+      onTap: () => Get.to(() => HomeScreen()));
 }
