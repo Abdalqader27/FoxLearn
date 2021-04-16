@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class  SignImpl {
+class  SignFunctions{
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
