@@ -12,8 +12,7 @@ import 'package:foxlearn/views/login/sign_imp.dart';
 
 // ignore: must_be_immutable
 class SignInScreen extends HookWidget with SignImpl {
-  final TextEditingController _emailController = new TextEditingController();
-  final TextEditingController _passwordController = new TextEditingController();
+
 
   List<Widget> buttons() => [
         RoundedButton(
@@ -44,7 +43,7 @@ class SignInScreen extends HookWidget with SignImpl {
   List<RoundedTextField> textFields() => [
         RoundedTextField(
           iconVisibility: false,
-          controller: _emailController,
+          controller: emailController,
           onTyping: validateEmail,
           obscureText: false,
           hint: 'Email Address',
@@ -56,7 +55,7 @@ class SignInScreen extends HookWidget with SignImpl {
         RoundedTextField(
           iconVisibility: true,
           onTapIcon: changeVisibilityOfPassword,
-          controller: _passwordController,
+          controller: passwordController,
           onTyping: null,
           obscureText: true,
           icon: Icon(Icons.visibility),
