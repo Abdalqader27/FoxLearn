@@ -19,14 +19,14 @@ class AppWidget extends StatelessWidget {
           listenWhen: _buildWhen,
           listener: _listener,
           builder: (context, state) {
-            if (state is WelcomeState) {
-              return WelcomeScreen();
+            if (state is CheckAuthEvent) {
+              return LoginScreen();
             } else if (state is LoginSuccess) {
               return RootScreen();
             } else if (state is SignUpState) {
               return SignUpScreen();
             }
-            return LoginScreen();
+            return WelcomeScreen();
           }),
     );
   }
