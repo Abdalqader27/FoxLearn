@@ -4,7 +4,6 @@ import 'package:foxlearn/app/auth/presentation/bloc/auth_bloc.dart';
 import 'package:foxlearn/app/auth/presentation/bloc/auth_event.dart';
 import 'package:foxlearn/injections/_injections.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
-import 'package:foxlearn/resources/translations/cupertion_picker_languages.dart';
 import 'package:get/get.dart';
 
 class WelcomeButtons {
@@ -17,7 +16,7 @@ class WelcomeButtons {
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 startButton(context),
                 Flexible(child: SizedBox(height: 10, width: 10)),
-                selectLangPickerButton(context)
+                // selectLangPickerButton(context)
               ]))),
       alignment: Alignment.bottomCenter);
 
@@ -43,20 +42,20 @@ class WelcomeButtons {
       ));
 
   /// select languages  using null safety library --------------------------------------------------------------
-  Widget selectLangPickerButton(context) => Flexible(
-        child: TextButton.icon(
-          onPressed: () => PickerLanguages.openCupertinoLanguagePicker(context),
-          icon: Icon(Icons.language, color: AppColors.Black15.withOpacity(.8)),
-          label: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-              child: Text('Select language'.tr, style: TextStyle(fontWeight: FontWeight.bold))),
-          style: TextButton.styleFrom(
-              enableFeedback: true,
-              primary: AppColors.Black15,
-              elevation: 1 / 2,
-              animationDuration: Duration(milliseconds: 1000),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              backgroundColor: AppColors.primaryColor),
-        ),
-      );
+  // Widget selectLangPickerButton(context) => Flexible(
+  //       child: TextButton.icon(
+  //         onPressed: () => PickerLanguages.openCupertinoLanguagePicker(context),
+  //         icon: Icon(Icons.language, color: AppColors.Black15.withOpacity(.8)),
+  //         label: Padding(
+  //             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+  //             child: Text('Select language'.tr, style: TextStyle(fontWeight: FontWeight.bold))),
+  //         style: TextButton.styleFrom(
+  //             enableFeedback: true,
+  //             primary: AppColors.Black15,
+  //             elevation: 1 / 2,
+  //             animationDuration: Duration(milliseconds: 1000),
+  //             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  //             backgroundColor: AppColors.primaryColor),
+  //       ),
+  //     );
 }

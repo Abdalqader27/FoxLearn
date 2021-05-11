@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foxlearn/app/auth/presentation/welcome/welcome_screen.dart';
 import 'package:foxlearn/app/root/presentation/root/root_screen.dart';
 import 'package:foxlearn/injections/_injections.dart';
 
@@ -18,7 +19,9 @@ class AppWidget extends StatelessWidget {
           listenWhen: _buildWhen,
           listener: _listener,
           builder: (context, state) {
-            if (state is LoginSuccess) {
+            if (state is WelcomeState) {
+              return WelcomeScreen();
+            } else if (state is LoginSuccess) {
               return RootScreen();
             } else if (state is SignUpState) {
               return SignUpScreen();

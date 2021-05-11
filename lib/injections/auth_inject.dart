@@ -27,7 +27,7 @@ class AuthDependencies {
     );
 
     serviceLocator.registerLazySingleton(
-      () => AuthBloc(CheckingAuth(), serviceLocator<LoginFacadeService>()),
+      () => AuthBloc(WelcomeState(), serviceLocator<LoginFacadeService>()),
     );
   }
 }
