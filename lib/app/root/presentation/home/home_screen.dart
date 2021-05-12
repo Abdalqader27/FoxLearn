@@ -1,16 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foxlearn/app/root/presentation/home/widget/common_session/common_season_item.dart';
 import 'package:foxlearn/app/root/presentation/home/widget/courses_banks/tab_bar_view.dart';
-import 'package:foxlearn/app/root/presentation/home/widget/home_background_painter.dart';
-import 'package:foxlearn/injections/_injections.dart';
 import 'package:get/get.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'home_bloc/bloc.dart';
-import 'home_bloc/home_bloc.dart';
 import 'home_implement.dart';
 
 /// Creation by Abd Alqader Alnajjar at 2021 / 5 / 9  -> : )
@@ -29,36 +23,36 @@ class HomeScreen extends StatelessWidget with HomeImplements {
         shrinkWrap: true,
         children: [
           imageTitle(),
-          CustomPaint(
-              size: Size(MediaQuery.of(context).size.width, 0),
-
-              /// for background with common session ------------------------
-              painter: HomeBackgroundCustomPainter(),
-              child: Column(children: [
-                SizedBox(height: 3.0.h),
-
-                /// get common session title --------------------------------------
-                commonSessionTitle(),
-
-                /// Sections 1- for
-                /// get the common
-                /// session -----------------------------------------------------------------
-                Container(
-                    height: 30.0.h,
-                    child: ListView.builder(
-                        itemCount: 5,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, index) {
-                          return CommonSessionItem(
-                            university: "كلية الطب البشري جامعة حلب ",
-                            category: "السنة الرابعة الفصل الثاني ",
-                            count: 10,
-                            date: "2021 - 10 - 10",
-                            onTap: () {},
-                          );
-                        }))
-              ])),
+          // CustomPaint(
+          //     size: Size(MediaQuery.of(context).size.width, 0),
+          //
+          //     /// for background with common session ------------------------
+          //     painter: HomeBackgroundCustomPainter(),
+          //     child: Column(children: [
+          //       SizedBox(height: 3.0.h),
+          //
+          //       /// get common session title --------------------------------------
+          //       //  commonSessionTitle(),
+          //
+          //       /// Sections 1- for
+          //       /// get the common
+          //       /// session -----------------------------------------------------------------
+          //       // Container(
+          //       //     height: 30.0.h,
+          //       //     child: ListView.builder(
+          //       //         itemCount: 5,
+          //       //         shrinkWrap: true,
+          //       //         scrollDirection: Axis.horizontal,
+          //       //         itemBuilder: (_, index) {
+          //       //           return CommonSessionItem(
+          //       //             university: "كلية الطب البشري جامعة حلب ",
+          //       //             category: "السنة الرابعة الفصل الثاني ",
+          //       //             count: 10,
+          //       //             date: "2021 - 10 - 10",
+          //       //             onTap: () {},
+          //       //           );
+          //       //         }))
+          //     ])),
 
           /// tab bar between the repeater (courses ) and banks -----------------------
           TabBarViewCoursesBanks(),
@@ -67,12 +61,12 @@ class HomeScreen extends StatelessWidget with HomeImplements {
           /// you can use bloc or provider it does not matter
           /// i want to use bloc -> ()
 
-          BlocBuilder<HomeBloc, HomeState>(
-            bloc: serviceLocator<HomeBloc>(),
-            builder: (context, state) {
-              return Container(child: state.widget);
-            },
-          ),
+          // BlocBuilder<HomeBloc, HomeState>(
+          //   bloc: serviceLocator<HomeBloc>(),
+          //   builder: (context, state) {
+          //     return Container(child: state.widget);
+          //   },
+          // ),
 
           /// wow !!!! the class has end ----------------------------------------------------------
         ],

@@ -1,5 +1,8 @@
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:foxlearn/generated/assets.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/values/styles.dart';
@@ -96,5 +99,49 @@ class BottomNavBarV2 extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class AppCurvedBottomNavigation extends StatelessWidget {
+  final state;
+  final onTabBottomNavigation;
+
+  const AppCurvedBottomNavigation({this.state, this.onTabBottomNavigation});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomNavigationBar(
+        iconSize: 25.0,
+        selectedColor: AppColors.LIGHT_Red,
+        strokeColor: AppColors.LIGHT_Red,
+        elevation: 0,
+        blurEffect: true,
+        isFloating: true,
+        borderRadius: Radius.circular(15),
+        scaleFactor: .5,
+        unSelectedColor: Colors.grey[400],
+        backgroundColor: Colors.white,
+        items: [
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome5.home),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome.folder_open),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome.menu),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome.book),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome.chart_bar),
+          ),
+          CustomNavigationBarItem(
+            icon: Icon(FontAwesome.user),
+          ),
+        ],
+        currentIndex: state.indexPage,
+        onTap: onTabBottomNavigation);
   }
 }

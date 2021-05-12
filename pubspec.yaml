@@ -38,6 +38,14 @@ dependencies:
   internet_connection_checker: ^0.0.1
   expansion_tile_card: ^2.0.0
   bouncing_widget: ^2.0.0
+  custom_navigation_bar: ^0.8.1
+  fluttericon: ^2.0.0
+  eva_icons_flutter: ^3.0.0
+  line_awesome_flutter: ^1.1.0-nullsafety
+  percent_indicator: ^3.0.1
+  sleek_circular_slider: ^2.0.0
+  flip_card: ^0.5.0
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

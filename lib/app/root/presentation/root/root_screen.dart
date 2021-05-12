@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foxlearn/app/root/presentation/files/files_screen.dart';
+import 'package:foxlearn/app/root/presentation/home/home_bloc/bloc.dart';
 import 'package:foxlearn/app/root/presentation/root/root_bloc/root_bloc.dart';
 import 'package:foxlearn/app/root/presentation/root/root_bloc/root_event.dart';
 import 'package:foxlearn/app/root/presentation/root/root_bloc/root_state.dart';
+import 'package:foxlearn/app/root/presentation/services/services_screen.dart';
+import 'package:foxlearn/app/root/presentation/statistics/statistics_screen.dart';
+import 'package:foxlearn/app/root/presentation/tests/test_screen.dart';
+import 'package:foxlearn/app/root/presentation/user/user_screen.dart';
 import 'package:foxlearn/app/root/presentation/widgets/app_bar.dart';
 import 'package:foxlearn/app/root/presentation/widgets/bottom_navigation.dart';
 import 'package:foxlearn/app/root/presentation/widgets/drawers_components.dart';
@@ -28,14 +34,16 @@ class RootScreen extends StatelessWidget {
             child: Stack(
           children: [
             /// Background Sections  ------------------------------------
-            RootBackground(marginBottom: 5.0),
+            RootBackground(marginBottom: 0.0),
 
             Scaffold(
                 backgroundColor: Colors.transparent,
-                drawer: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25.0.sp),
-                    bottomLeft: Radius.circular(25.0.sp),
+                drawer: Card(
+                  margin: EdgeInsets.all(10),
+                  clipBehavior: Clip.antiAlias,
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
                   ),
 
                   /// Drawer Check Items -------------------------------
@@ -56,7 +64,7 @@ class RootScreen extends StatelessWidget {
                   builder: (context, state) {
                     return Column(
                       children: [
-                        SizedBox(height: 3.0.h),
+                        SizedBox(height: 2.0.h),
 
                         /// App Bar Sections ----------------------------------
                         AppAppBar(
@@ -70,9 +78,12 @@ class RootScreen extends StatelessWidget {
                             physics: NeverScrollableScrollPhysics(),
                             controller: serviceLocator<RootBloc>().pageController,
                             children: [
-                              _notificationScreen,
-                              _homeScreen,
-                              _myNoteScreen,
+                              HomeScreen(),
+                              FilesScreen(),
+                              ServicesScreen(),
+                              TestsScreen(),
+                              StatisticsScreen(),
+                              UserScreen()
                             ],
                             onPageChanged: (index) {
                               onTabBottomNavigation(index);
@@ -86,7 +97,7 @@ class RootScreen extends StatelessWidget {
                 bottomNavigationBar: BlocBuilder<RootBloc, RootState>(
                   bloc: serviceLocator.get<RootBloc>(),
                   builder: (context, state) {
-                    return AppBottomNavigation(
+                    return AppCurvedBottomNavigation(
                       state: state,
                       onTabBottomNavigation: onTabBottomNavigation,
                     );

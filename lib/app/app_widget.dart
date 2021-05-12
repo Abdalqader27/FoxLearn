@@ -12,23 +12,20 @@ import 'auth/presentation/sign-up/sign_up_screen.dart';
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (context) => serviceLocator<AuthBloc>()..add(WelcomeEvent()),
-      child: BlocConsumer<AuthBloc, AuthState>(
-          buildWhen: _buildWhen,
-          listenWhen: _buildWhen,
-          listener: _listener,
-          builder: (context, state) {
-            if (state is CheckAuthEvent) {
-              return LoginScreen();
-            } else if (state is LoginSuccess) {
-              return RootScreen();
-            } else if (state is SignUpState) {
-              return SignUpScreen();
-            }
+    return BlocBuilder<AuthBloc, AuthState>(
+        bloc: serviceLocator<AuthBloc>()..add(WelcomeEvent()),
+        builder: (context, state) {
+          return RootScreen();
+
+          if (state is WelcomeEvent) {
             return WelcomeScreen();
-          }),
-    );
+          } else if (state is LoginSuccess) {
+            return RootScreen();
+          } else if (state is SignUpState) {
+            return SignUpScreen();
+          }
+          return LoginScreen();
+        });
   }
 
   _listener(BuildContext context, AuthState authState) {

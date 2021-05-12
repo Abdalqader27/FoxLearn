@@ -18,6 +18,19 @@ class AppStyles {
     bottomRight: Radius.circular(30.0.sp),
   );
 
+  static ShapeBorder cardStyle1 = BeveledRectangleBorder(
+    borderRadius: BorderRadius.only(
+      bottomRight: Radius.circular(15),
+      topLeft: Radius.circular(15),
+    ),
+  );
+  static ShapeBorder cardStyle2 = BeveledRectangleBorder(
+    borderRadius: BorderRadius.only(
+      bottomLeft: Radius.circular(15),
+      topRight: Radius.circular(15),
+    ),
+  );
+
   static BorderRadius borderRadiusAll(double radius) => BorderRadius.all(
         Radius.circular(radius.sp),
       );

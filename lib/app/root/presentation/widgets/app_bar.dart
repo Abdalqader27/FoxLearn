@@ -12,7 +12,7 @@ class AppAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 3.0.h),
+      padding: EdgeInsets.symmetric(horizontal: 2.0.h),
       child: Row(
         children: [
           CircleButton(
@@ -33,5 +33,5 @@ class AppAppBar extends StatelessWidget {
     );
   }
 
-  final List<String> title = ["إشعارات", "الرئيسية", "ملاحظتي"];
+  final List<String> title = ["الرئيسية ", "الملفات", "الخدمات", "اﻹختبارات", "الإحصائيات", "ملفي"];
 }
