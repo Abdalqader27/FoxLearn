@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:foxlearn/app/root/presentation/home/home_bloc/bloc.dart';
 import 'package:foxlearn/generated/assets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

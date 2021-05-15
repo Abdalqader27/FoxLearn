@@ -1,10 +1,10 @@
+
 import 'package:flutter/material.dart';
+import 'package:foxlearn/common/widgets/app-button.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/theme/text_styles.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../app-button.dart';
 
 class NotificationDialog extends StatelessWidget {
   final String title;
@@ -19,6 +19,7 @@ class NotificationDialog extends StatelessWidget {
       required this.textButtonConfirm,
       required this.onConfirm})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(

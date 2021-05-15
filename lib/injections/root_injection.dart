@@ -1,0 +1,3 @@
+class RootInjection {
+  static inject() {}
+}
