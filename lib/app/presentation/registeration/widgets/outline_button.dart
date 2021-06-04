@@ -12,13 +12,21 @@ class OutlineNeuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BouncingAnimation(
         onPressed: onTap,
-        child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("$text",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.secondaryColor, fontSize: 12.0.sp)),
-            )),
+        child: Card(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: AppColors.primaryColor),
+              borderRadius: BorderRadius.circular(15)),
+          child: Center(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("$text",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: AppColors.secondaryColor,
+                    fontSize: 11.0.sp,
+                    fontWeight: FontWeight.bold)),
+          )),
+        ),
       );
 }

@@ -12,7 +12,7 @@ class LottieLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lottie =
-        Center(child: Lottie.asset("assets/lotti/loading.json", width: 30.0.h));
+        Center(child: Lottie.asset("assets/lotti/loading.json", width: 20.0.h));
     if (expanded)
       return Expanded(child: lottie);
     else if (flexible) return Flexible(child: lottie);

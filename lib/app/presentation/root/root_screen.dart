@@ -17,72 +17,71 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class RootScreen extends GetView<RootController> {
   @override
   Widget build(BuildContext context) {
-
-    return GetBuilder<RootController>(builder: (data) {
-      return SafeArea(
-          child: Stack(children: [
-            /// Background Sections  ------------------------------------
-            RootBackground(marginBottom: 0.0),
-            Scaffold(
+    Get.lazyPut(()=>RootController());
+    return SafeArea(
+        child: Stack(children: [
+          /// Background Sections  ------------------------------------
+          RootBackground(marginBottom: 0.0),
+          Scaffold(
               backgroundColor: Colors.transparent,
-                drawer: Card(
-                  margin: EdgeInsets.all(10),
-                  clipBehavior: Clip.antiAlias,
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        topLeft: Radius.circular(20)),
-                  ),
+              drawer: Card(
+                margin: EdgeInsets.all(10),
+                clipBehavior: Clip.antiAlias,
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      topLeft: Radius.circular(20)),
+                ),
 
-                  /// Drawer Check Items -------------------------------
-                  child: Drawer(
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: List.generate(
-                        DrawerComponent().getItems(context).length,
-                            (index) => DrawerComponent().getItems(context)[index],
-                      ),
+                /// Drawer Check Items -------------------------------
+                child: Drawer(
+                  child: ListView(
+                    physics: BouncingScrollPhysics(),
+                    children: List.generate(
+                      DrawerComponent().getItems(context).length,
+                          (index) => DrawerComponent().getItems(context)[index],
                     ),
                   ),
                 ),
+              ),
 
-                /// Body-----------------------------------------------------------
-                body: Column(
-                  children: [
-                    SizedBox(height: 2.0.h),
+              /// Body-----------------------------------------------------------
+              body: Column(
+                children: [
+                  SizedBox(height: 2.0.h),
 
-                    /// App Bar Sections ----------------------------------
-                    AppAppBar(
-                      pageIndex: data.indexPage.value,
+                  /// App Bar Sections ----------------------------------
+                  AppAppBar(
+                      pageIndex: controller.indexPage.value,
                       onTapDrawer: () => Scaffold.of(context).openDrawer()
 
-                    ),
+                  ),
 
-                    /// Page View Sections -------------------------------
-                    Expanded(
-                      child: PageView(
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: controller.pageController,
-                        children: [
-                          HomeScreen(),
-                          FilesScreen(),
-                          ServicesScreen(),
-                          TestsScreen(),
-                          StatisticsScreen(),
-                          UserScreen()
-                        ],
-                        onPageChanged: (index) {
-                          onTabBottomNavigation(index);
-                        },
-                      ),
+                  /// Page View Sections -------------------------------
+                  Expanded(
+                    child: PageView(
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: controller.pageController,
+                      children: [
+                        HomeScreen(),
+                        FilesScreen(),
+                        ServicesScreen(),
+                        TestsScreen(),
+                        StatisticsScreen(),
+                        UserScreen()
+                      ],
+                      onPageChanged: (index) {
+                        onTabBottomNavigation(index);
+                      },
                     ),
-                  ],
-                ),
-                bottomNavigationBar: AppCurvedBottomNavigation(
-                    state: data.indexPage.value,
-                    onTabBottomNavigation: onTabBottomNavigation))
-          ]));
-    });
+                  ),
+                ],
+              ),
+              bottomNavigationBar: AppCurvedBottomNavigation(
+                  state: controller.indexPage.value,
+                  onTabBottomNavigation: onTabBottomNavigation))
+        ]));
+
   }
 
   onTabBottomNavigation(int index) {

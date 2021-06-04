@@ -50,7 +50,7 @@ class SignInController extends GetxController with StateMixin<bool> {
               GetStorage()
                   .write(AppKeys.USER_FLAG_KEY, json.encode(account.toJson()));
               _appController.login();
-              Get.delete<SignInController>(force: true);
+          //    Get.delete<SignInController>(force: true);
             } catch (e) {
               print(e);
             }

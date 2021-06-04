@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import 'package:flutter/material.dart';
 import 'package:foxlearn/app/controllers/app_controller/app_controller.dart';
 import 'package:foxlearn/app/controllers/registerations/sign_in_controller.dart';
 import 'package:foxlearn/app/infrastructure/models/user_data.dart';
 import 'package:foxlearn/app/presentation/registeration/sign_in/sgin_in_form.dart';
+import 'package:foxlearn/app/presentation/registeration/sign_in/widgets/welcome_background_image.dart';
+import 'package:foxlearn/app/presentation/registeration/sign_in/widgets/welcome_title.dart';
 import 'package:foxlearn/app/presentation/registeration/sign_up/sign_up.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/get_image.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/neu_button.dart';
@@ -19,44 +22,36 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class SignIn extends GetView<SignInController> {
+class SignIn extends GetView<SignInController>
+    with BackgroundImage, WelcomeTitle {
   @override
   Widget build(BuildContext context) {
     Get.put(SignInController(Get.find<AppController>()), permanent: true);
-
-    /// Title Section-----------------------------------------
-    final helloText = TextView(text: AppString.HELLO);
-    final registerText =
-        TextView(text: AppString.RegisterToLogin, isTitle: false);
-    final image = GetTopImage(path: Assets.svgFox);
-
-    /// Buttons Section ----------------------------------------------------------------------------
-    final loginButton = NeuFlatButton(
-        onTap: () => controller.onClickOk(), text: AppString.Login);
-    final signUptButton = OutlineNeuButton(
-        text: AppString.NEW_ACCOUNT, onTap: () => Get.to(() => SignUp()));
-
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: ListView(
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
+      body: Stack(
         children: [
-          image,
-          helloText,
-          registerText,
-          SizedBox(height: 3.0.h),
-          controller.obx(
-              ((state) =>
-                  _loginSection(loginButton, signUptButton, controller)),
-              onLoading: LottieLoading()),
+          KeyboardVisibilityBuilder(
+            builder: (context, visible) {
+              if (!visible) return welcomeTitle();
+              else return Container();
+            },
+          ),
+          imageBackground(),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: controller.obx(((state) => _loginSection(controller)),
+                onLoading: LottieLoading()),
+          ),
         ],
       ),
     );
   }
 }
 
-Widget _loginSection(enterButton, newAccountButton, controller) {
+Widget _loginSection(controller) {
   return Column(
     children: [
       SignForm(
@@ -66,13 +61,6 @@ Widget _loginSection(enterButton, newAccountButton, controller) {
         phoneController: controller.phoneController,
         phoneNode: controller.focusNodePhone,
       ),
-      SizedBox(
-        height: 2.0.h,
-      ),
-      enterButton,
-      SizedBox(height: 2.0.h),
-      newAccountButton,
-      SizedBox(height: 3.0.h),
     ],
   );
 }

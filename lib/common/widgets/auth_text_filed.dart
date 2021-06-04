@@ -56,7 +56,9 @@ class AuthTextFormFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      shape: AppStyles.cardStyle1,
+      color: AppColors.kLightGrey.withOpacity(.45),
+      margin: EdgeInsets.symmetric(horizontal: 4.0.w,),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: TextFormField(
         onFieldSubmitted: onSubmit as void Function(String)?,
         obscureText: obscure,
