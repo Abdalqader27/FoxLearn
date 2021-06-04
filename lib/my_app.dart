@@ -3,7 +3,7 @@ import 'package:foxlearn/app/controllers/app_controller/app_controller.dart';
 import 'package:foxlearn/app/presentation/root/root_screen.dart';
 import 'package:get/get.dart';
 
-import 'app/presentation/intro/intro_screen.dart';
+import 'app/presentation/on_boarding/intro_screen.dart';
 import 'app/presentation/registeration/sign_in/sign_in.dart';
 import 'app/presentation/widgets/lottie_loading.dart';
 

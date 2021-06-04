@@ -5,6 +5,7 @@ import 'package:foxlearn/app/controllers/app_controller/app_controller.dart';
 import 'package:foxlearn/app/controllers/registerations/sign_in_controller.dart';
 import 'package:foxlearn/app/infrastructure/models/user_data.dart';
 import 'package:foxlearn/app/presentation/registeration/sign_in/sgin_in_form.dart';
+import 'package:foxlearn/app/presentation/registeration/sign_up/sign_up.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/get_image.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/neu_button.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/outline_button.dart';
@@ -27,15 +28,16 @@ class SignIn extends GetView<SignInController> {
     final helloText = TextView(text: AppString.HELLO);
     final registerText =
         TextView(text: AppString.RegisterToLogin, isTitle: false);
-    final image = GetTopImage(path: Assets.svgLogin);
+    final image = GetTopImage(path: Assets.svgFox);
 
     /// Buttons Section ----------------------------------------------------------------------------
     final loginButton = NeuFlatButton(
         onTap: () => controller.onClickOk(), text: AppString.Login);
     final signUptButton = OutlineNeuButton(
-        text: AppString.NEW_ACCOUNT, onTap: () => Get.toNamed('/sign_up'));
+        text: AppString.NEW_ACCOUNT, onTap: () => Get.to(() => SignUp()));
 
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
       body: ListView(
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),

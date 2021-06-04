@@ -91,6 +91,7 @@ class Assets {
   static const String svgRafiki = 'assets/svg/rafiki.svg';
   static const String svgRectangleShap = 'assets/svg/Rectangle_shap.svg';
   static const String svgRootBackground = 'assets/svg/root_background.svg';
+  static const String svgRoundedTriangle = 'assets/svg/rounded_triangle.svg';
   static const String svgScan = 'assets/svg/scan.svg';
   static const String svgSearch = 'assets/svg/Search.svg';
   static const String svgSecurity = 'assets/svg/security.svg';

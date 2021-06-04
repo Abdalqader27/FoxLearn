@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/theme/text_styles.dart';
+import 'package:foxlearn/resources/values/styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 
 class AuthTextFormFiled extends StatelessWidget {
   final TextEditingController? controller;
@@ -54,8 +54,9 @@ class AuthTextFormFiled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
+    return Card(
+      elevation: 0,
+      shape: AppStyles.cardStyle1,
       child: TextFormField(
         onFieldSubmitted: onSubmit as void Function(String)?,
         obscureText: obscure,

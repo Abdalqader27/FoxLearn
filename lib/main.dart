@@ -26,7 +26,7 @@ void main() async {
   await GetStorage.init();
   LocalDataSource.init();
   WidgetsFlutterBinding.ensureInitialized();
-  // if (kDebugMode) _initMoorInspector(LocalDataSource.appDatabase);
+  if (kDebugMode) _initMoorInspector(LocalDataSource.appDatabase);
   final _init = Firebase.initializeApp();
 
   /// init build
@@ -44,7 +44,7 @@ void main() async {
 
   /// ----------------------  Catcher Sections -------------------------------------///
   /// hi bood we commit this for you :-)
-  if (!kDebugMode || !kProfileMode)
+  if (!kDebugMode && !kProfileMode)
     Catcher(
         rootWidget: init(),
         debugConfig: CatcherConfig.getDebugConfig(),
@@ -67,11 +67,11 @@ void main() async {
     );
 }
 
-// Future<void> _initMoorInspector(AppDatabase appDatabase) async {
-//   final moorInspectorBuilder = MoorInspectorBuilder()
-//     ..bundleId = 'com.elkood.get_up'
-//     ..icon = 'flutter'
-//     ..addDatabase('AppDatabase', appDatabase);
-//   final inspector = moorInspectorBuilder.build();
-//   await inspector.start();
-// }
+Future<void> _initMoorInspector(AppDatabase appDatabase) async {
+  final moorInspectorBuilder = MoorInspectorBuilder()
+    ..bundleId = 'com.elkood.get_up'
+    ..icon = 'flutter'
+    ..addDatabase('AppDatabase', appDatabase);
+  final inspector = moorInspectorBuilder.build();
+  await inspector.start();
+}

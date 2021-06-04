@@ -14,7 +14,7 @@ class ApiSettings with DioClientMixin implements ApiSettingsServices {
     try {
       final response = await dioClient.get(ApiRoutes.CHECK_APP_VERSION,
           queryParameters: {"CurrentAppVersion": appVersion});
-      print(response);
+      print(" setting"+response);
       return ApiResult.success(data: response as int);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e)!);

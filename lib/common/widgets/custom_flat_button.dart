@@ -28,19 +28,19 @@ class CustomFlatButton extends StatelessWidget {
               MaterialStateProperty.all(color ?? AppColors.secondaryColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
                 side: borderColor != null
                     ? BorderSide(color: borderColor!)
                     : BorderSide.none),
           ),
-          padding: MaterialStateProperty.all(EdgeInsets.all(1.5.w)),
+          padding: MaterialStateProperty.all(EdgeInsets.all(3.5.w)),
         ),
         onPressed: onTap as void Function()?,
         child: Text(
           title!,
           textAlign: TextAlign.center,
           style: textStyle ??
-              AppTextStyles.medium().copyWith(color: theme.shadowColor),
+              AppTextStyles.medium().copyWith(color: AppColors.WHITE),
         ));
   }
 }

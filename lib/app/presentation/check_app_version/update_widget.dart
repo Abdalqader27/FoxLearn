@@ -57,7 +57,7 @@ class UpdateWidget extends StatelessWidget {
                   ),
                 Spacer(),
                 SvgPicture.asset(
-                  Assets.svgUpdated,
+                  Assets.svgFox,
                   width: 50.0.w,
                 ),
                 SizedBox(
@@ -67,12 +67,12 @@ class UpdateWidget extends StatelessWidget {
                   Text(
                     'هذا الإصدار لم يعد مدعوماً!',
                     textAlign: TextAlign.center,
-                    style: AppTextStyles.medium(),
+                    style: AppTextStyles.medium(fontWeight: FontWeight.bold),
                   ),
                 Text(
                   ' يرجى تحميل أحدث إصدار لتتمتع بآخر الميزات !',
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.medium(),
+                  style: AppTextStyles.medium(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 2.0.h,
