@@ -127,7 +127,7 @@ class ItemQuizBankWidget extends StatelessWidget {
                                             height: 20,
                                             child: SvgPicture.asset(
                                                 itemQuizBank.isActivated
-                                                    ? "assets/svg/034-folder-6.svg"
+                                                    ? "assets/svg/034_folder_6.svg"
                                                     : "SvgFiles/lock_folder.svg",
                                                 width: 26,
                                                 height: 26)))),
@@ -250,7 +250,7 @@ class ItemQuizBankWidget extends StatelessWidget {
     //                             ClipRRect(
     //                               borderRadius: const BorderRadius.all(Radius.circular(16.0)),
     //                               child: AspectRatio(
-    //                                   aspectRatio: 1.0, child: Container(child: SizedBox(width: 20, height: 20, child: SvgPicture.asset("SvgFiles/034-folder-6.svg", width: 26, height: 26)))),
+    //                                   aspectRatio: 1.0, child: Container(child: SizedBox(width: 20, height: 20, child: SvgPicture.asset("SvgFiles/034_folder_6.svg", width: 26, height: 26)))),
     //                             )
     //                           ],
     //                         ),

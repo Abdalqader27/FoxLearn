@@ -2,7 +2,6 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:foxlearn/app/presentation/welcome/sgin_in/widgets/call-dialog-function.dart';
 import 'package:foxlearn/common/widgets/circle-card.dart';
 import 'package:foxlearn/common/widgets/flutter_dash.dart';
 import 'package:foxlearn/generated/assets.dart';
@@ -131,7 +130,6 @@ class DrawerComponent {
           backgroundColor: AppColors.ACCENT,
         ),
         title: Text("تحديث التطبيق"),
-        onTap: () => callDialog(context),
       ),
       ListTile(
         leading: CircleCard(

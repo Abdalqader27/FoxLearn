@@ -46,6 +46,10 @@ dependencies:
   sleek_circular_slider: ^2.0.0
   flip_card: ^0.5.0
   provider: ^5.0.0
+  package_info: ^2.0.0
+  auto_animated: ^3.0.0
+  supercharged: ^2.0.0
+  flutter_spinkit: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,9 +71,9 @@ flutter:
   fonts:
     - family: sst-arabic
       fonts:
-        - asset:  assets/fonts/sst-arabic-bold.ttf
-        - asset:  assets/fonts/sst-arabic-light.ttf
-        - asset:  assets/fonts/sst-arabic-medium.ttf
-        - asset:  assets/fonts/sst-arabic-roman.ttf
+        - asset:  assets/fonts/sst_arabic_bold.ttf
+        - asset:  assets/fonts/sst_arabic_light.ttf
+        - asset:  assets/fonts/sst_arabic_medium.ttf
+        - asset:  assets/fonts/sst_arabic_roman.ttf
 
 
