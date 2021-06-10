@@ -34,97 +34,116 @@ class _Service1DetailsState extends State<Service1Details> {
   @override
   Widget build(BuildContext context) {
     print("Api" + widget.automate.toString());
-    return Scaffold(
-      body: WelcomeBackground(
-        child: FutureBuilder<NfaDfaModel?>(
-            future: future,
-            builder: (context, snapshot) {
-              if (snapshot.data == null) return LottieLoading();
-              return ListView(
-                padding: EdgeInsets.all(20),
-                children: [
-                  SizedBox(height: 20.0.h),
-                  Card(
-                    color: AppColors.kLightGrey.withOpacity(.8),
-                    elevation: 0,
-                    shape: AppStyles.cardStyle4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListTile(
-                        title: Text(
-                          "نتائج التحويل  ",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        subtitle: Text("اﻷتومات الحالي : حتمي "),
-                      ),
+    return SafeArea(
+      child: Scaffold(
+        body: WelcomeBackground(
+          child: FutureBuilder<NfaDfaModel?>(
+              future: future,
+              builder: (context, snapshot) {
+                if (snapshot.data == null) return LottieLoading();
+                return Stack(
+                  children: [
+                    PageView(
+                      children: [
+                        StepsServices(data: snapshot.data!.stepOne,text: "الخطوة اﻷولى",),
+                        StepsServices(data: snapshot.data!.stepTwo,text: "الخطوة الثانية",),
+                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("الخطوة اﻷولى : "),
-                  ),
-                  //
+                  ],
+                );
+              }),
+        ),
+      ),
+    );
+  }
+}
 
+class StepsServices extends StatefulWidget {
+  final text;
+  final dynamic data;
+
+  const StepsServices({Key? key, required this.data, this.text}) : super(key: key);
+
+  @override
+  _StepsServicesState createState() => _StepsServicesState(data);
+}
+
+class _StepsServicesState extends State<StepsServices> {
+  final dynamic data;
+
+  _StepsServicesState(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      physics: BouncingScrollPhysics(),
+      padding: EdgeInsets.all(20),
+      children: [
+        Card(
+          color: AppColors.kLightGrey.withOpacity(.4),
+          elevation: 0,
+          shape: AppStyles.cardStyle4,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              title: Text(
+                "${widget.text}",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30),
+              ),
+              subtitle: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("يمكنك  يتم التحويل من حالة الى حالة"),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Card(
-                    color: AppColors.kLightGrey.withOpacity(.8),
                     elevation: 0,
                     shape: AppStyles.cardStyle4,
                     child: ListTile(
                       title: Text("الحالات "),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(snapshot.data!.stepOne.p.toString()),
+                        child: Text(data.p.toString()),
                       ),
                     ),
                   ),
                   Card(
-                    color: AppColors.kLightGrey.withOpacity(.8),
                     elevation: 0,
                     shape: AppStyles.cardStyle4,
                     child: ListTile(
                       title: Text("اﻷبجدية "),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(snapshot.data!.stepOne.segma.toString()),
+                        child: Text(data.segma.toString()),
                       ),
                     ),
                   ),
-
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Card(
-                          color: AppColors.kLightGrey.withOpacity(.8),
-                          elevation: 0,
-                          shape: AppStyles.cardStyle4,
-                          child: ListTile(
-                            title: Text("الحالة الأبتدائية"),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(snapshot.data!.stepOne.start),
-                            ),
-                          ),
-                        ),
+                  Card(
+                    elevation: 0,
+                    shape: AppStyles.cardStyle4,
+                    child: ListTile(
+                      title: Text("الحالة الأبتدائية"),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(data.start),
                       ),
-                      Expanded(
-                        child: Card(
-                          color: AppColors.kLightGrey.withOpacity(.8),
-                          elevation: 0,
-                          shape: AppStyles.cardStyle4,
-                          child: ListTile(
-                            title: Text("الحالات النهائية"),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child:
-                                  Text(snapshot.data!.stepOne.end.toString()),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   Card(
-                    color: AppColors.kLightGrey.withOpacity(.8),
+                    elevation: 0,
+                    shape: AppStyles.cardStyle4,
+                    child: ListTile(
+                      title: Text("الحالات النهائية"),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(data.end.toString()),
+                      ),
+                    ),
+                  ),
+                  Card(
                     elevation: 0,
                     shape: AppStyles.cardStyle4,
                     child: Directionality(
@@ -132,59 +151,62 @@ class _Service1DetailsState extends State<Service1Details> {
                       child: Container(
                         alignment: Alignment.topCenter,
                         padding: EdgeInsets.symmetric(vertical: 5.0),
-                        child: DataTable(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: AppColors.kLightGrey)),
-                          showBottomBorder: false,
-                          columns: [
-                            DataColumn(label: Icon(Mdi.stateMachine)),
-                            for (int j = 0;
-                                j < snapshot.data!.stepOne.segma.length;
-                                ++j)
-                              DataColumn(
-                                label: Text(
-                                  snapshot.data!.stepOne.segma[j].toString(),
-                                  style: TextStyle(fontSize: 9.0.sp),
-                                ),
-                              ),
-                          ],
-                          rows: [
-                            for (int i = 0;
-                                i < snapshot.data!.stepOne.delta.length;
-                                ++i)
-                              DataRow(
-                                cells: [
-                                  DataCell(
-                                    Text(
-                                      snapshot.data!.stepOne.delta[i].first
-                                          .toString(),
-                                      style: TextStyle(fontSize: 9.0.sp),
-                                    ),
+                        child: ListTile(
+                          title: Directionality(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("جدول الانتقال"),
+                            ),
+                            textDirection: TextDirection.rtl,
+                          ),
+                          subtitle: DataTable(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border:
+                                    Border.all(color: AppColors.kLightGrey)),
+                            showBottomBorder: false,
+                            columns: [
+                              DataColumn(label: Icon(Mdi.stateMachine)),
+                              for (int j = 0; j < data.segma.length; ++j)
+                                DataColumn(
+                                  label: Text(
+                                    data.segma[j].toString(),
+                                    style: TextStyle(fontSize: 9.0.sp),
                                   ),
-                                  for (int k = 0;
-                                      k <
-                                          snapshot.data!.stepOne.delta[i].second
-                                              .length;
-                                      ++k)
-                                    DataCell(Text(snapshot
-                                        .data!.stepOne.delta[i].second[k]
-                                        .toString(),
-                                      style: TextStyle(fontSize: 9.0.sp),
-
-
-                                    ))
-                                ],
-                              ),
-                          ],
+                                ),
+                            ],
+                            rows: [
+                              for (int i = 0; i < data.delta.length; ++i)
+                                DataRow(
+                                  cells: [
+                                    DataCell(
+                                      Text(
+                                        data.delta[i].first.toString(),
+                                        style: TextStyle(fontSize: 9.0.sp),
+                                      ),
+                                    ),
+                                    for (int k = 0;
+                                        k < data.delta[i].second.length;
+                                        ++k)
+                                      DataCell(Text(
+                                        data.delta[i].second[k].toString(),
+                                        style: TextStyle(fontSize: 9.0.sp),
+                                      ))
+                                  ],
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ],
-              );
-            }),
-      ),
+              ),
+            ),
+          ),
+        ),
+        //
+      ],
     );
   }
 }

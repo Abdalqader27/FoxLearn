@@ -139,10 +139,8 @@ class Service1Implement {
                                   print("col=" + i.toString());
                                   print("row=" + j.toString());
                                   int ii = i, jj = j;
-                                  print(inputTable.length);
                                   inputTable[jj][ii] = val;
                                   if (val == "") inputTable[jj][ii] = "-";
-                                  print(inputTable);
                                 });
                               },
                               decoration: InputDecoration(
