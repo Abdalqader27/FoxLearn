@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foxlearn/app/presentation/home/widget/courses_banks/tab_bar_view.dart';
 import 'package:foxlearn/app/presentation/services/service1/service1_screen.dart';
+import 'package:foxlearn/app/presentation/services/services2/service2_screen.dart';
 import 'package:get/get.dart';
 
 import 'home_implement.dart';
@@ -33,36 +34,15 @@ class HomeScreen extends StatelessWidget with HomeImplements {
               title: Text("الخدمة الاولى"),
             ),
           ),
-          // CustomPaint(
-          //     size: Size(MediaQuery.of(context).size.width, 0),
-          //
-          //     /// for background with common session ------------------------
-          //     painter: HomeBackgroundCustomPainter(),
-          //     child: Column(children: [
-          //       SizedBox(height: 3.0.h),
-          //
-          //       /// get common session title --------------------------------------
-          //       //  commonSessionTitle(),
-          //
-          //       /// Sections 1- for
-          //       /// get the common
-          //       /// session -----------------------------------------------------------------
-          //       // Container(
-          //       //     height: 30.0.h,
-          //       //     child: ListView.builder(
-          //       //         itemCount: 5,
-          //       //         shrinkWrap: true,
-          //       //         scrollDirection: Axis.horizontal,
-          //       //         itemBuilder: (_, index) {
-          //       //           return CommonSessionItem(
-          //       //             university: "كلية الطب البشري جامعة حلب ",
-          //       //             category: "السنة الرابعة الفصل الثاني ",
-          //       //             count: 10,
-          //       //             date: "2021 - 10 - 10",
-          //       //             onTap: () {},
-          //       //           );
-          //       //         }))
-          //     ])),
+          Card(
+            elevation: 0,
+            child: ListTile(
+              onTap: (){
+                Get.to(()=>Service2Screen());
+              },
+              title: Text("الخدمة الثانية"),
+            ),
+          ),
 
           /// tab bar between the repeater (courses ) and banks -----------------------
           TabBarViewCoursesBanks(),

@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/edit_text_form.dart';
+import 'package:foxlearn/app/presentation/services/service1/service1_api.dart';
+import 'package:foxlearn/app/presentation/services/service1/service1_details.dart';
 import 'package:foxlearn/app/presentation/services/service1/service1_implement.dart';
 import 'package:foxlearn/app/presentation/widgets/primary_background.dart';
 import 'package:foxlearn/app/presentation/widgets/rounded_button.dart';
+import 'package:foxlearn/common/utils/logs.dart';
 import 'package:foxlearn/common/widgets/background/second_background.dart';
 import 'package:foxlearn/common/widgets/background/welcome_background.dart';
 import 'package:foxlearn/common/widgets/multi_select_dialog_Item.dart';
@@ -12,6 +15,8 @@ import 'package:foxlearn/resources/values/styles.dart';
 import 'package:mdi/mdi.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'automate_input_model.dart';
 
 class ServicesOneScreen extends StatefulWidget {
   const ServicesOneScreen({Key? key}) : super(key: key);
@@ -52,10 +57,8 @@ class _ServicesOneScreenState extends State<ServicesOneScreen>
               onTap1: () {
                 statesController.add(TextEditingController());
                 filedStates.add(TextField(
-                  onChanged: (data){
-                    setState(() {
-
-                    });
+                  onChanged: (data) {
+                    setState(() {});
                   },
                   controller: statesController[statesController.length - 1],
                 ));
@@ -65,10 +68,8 @@ class _ServicesOneScreenState extends State<ServicesOneScreen>
                 setState(() {
                   alphabetController.add(TextEditingController());
                   fieldAlphabet.add(TextField(
-                    onChanged: (data){
-                      setState(() {
-
-                      });
+                    onChanged: (data) {
+                      setState(() {});
                     },
                     controller:
                         alphabetController[alphabetController.length - 1],
@@ -149,7 +150,47 @@ class _ServicesOneScreenState extends State<ServicesOneScreen>
             ),
             theQuintuple(),
             RoundedButton(
-              onTap: () {},
+              onTap: () {
+                AutomateInput automate = AutomateInput(
+                    segma: [], q: [], start: '', delta: [], end: []);
+
+                for (int i = 0; i < statesController.length; ++i)
+                  automate.q.add(statesController[i].text.toString());
+                Logs.logger.i("q= " + automate.q.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                for (int i = 0; i < alphabetController.length; ++i)
+                  automate.segma.add(alphabetController[i].text.toString());
+                Logs.logger.i("segma= " + automate.segma.toString());
+// ------------------------------------------------------------------------------------------------------------
+
+                automate.start = firstText.first.toString();
+                Logs.logger.i("start= " + automate.start.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                endText.forEach((element) {
+                  automate.end.add(element);
+                });
+                Logs.logger.i("end= " + automate.end.toString());
+
+                List<List<int>> rows = [];
+                for (int i = 0; i < statesController.length; ++i) {
+                  rows.add([]);
+                  for (int j = 0; j < alphabetController.length; ++j) {
+                    Set<int> data = tableController[i][j].item1;
+                    int sum = 0;
+                    data.forEach((element) {
+                      sum += 1 << element;
+                    });
+                    rows[i].add(sum);
+                  }
+                }
+                automate.delta = rows;
+                Logs.logger.i("delta= " + rows.toString());
+
+                Get.to(() => Service1Details(automate: automate,
+                    ));
+              },
               color: AppColors.LIGHT_Red,
               myChild: Text(
                 "تحويل الاتومات إلى حتمي  ",

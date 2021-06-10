@@ -65,16 +65,16 @@ Widget _loginSection(controller) {
   );
 }
 
-storeDefaultLogin() {
-  GetStorage().write(AppKeys.LOGIN_FLAG_KEY, false);
-  UserAccount user = UserAccount(
-    id: 0,
-    dob: DateTime.now(),
-    email: "",
-    lastName: "",
-    firstName: "",
-    password: "",
-    phoneNumber: "",
-  );
-  GetStorage().write(AppKeys.USER_FLAG_KEY, json.encode(user.toJson()));
-}
+// storeDefaultLogin() {
+//   GetStorage().write(AppKeys.LOGIN_FLAG_KEY, false);
+//   UserAccount user = UserAccount(
+//     id: 0,
+//     dob: DateTime.now(),
+//     email: "",
+//     lastName: "",
+//     firstName: "",
+//     password: "",
+//     phoneNumber: "",
+//   );
+//   GetStorage().write(AppKeys.USER_FLAG_KEY, json.encode(user.toJson()));
+// }

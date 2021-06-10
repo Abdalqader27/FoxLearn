@@ -89,7 +89,7 @@ class _SignFormState extends State<SignForm> {
                           focusNode: widget.phoneNode,
                           svgPath: Assets.svgProfile,
                           maxLength: 10,
-                          inputType: TextInputType.number,
+                          inputType: TextInputType.text,
                           inputAction: TextInputAction.next,
                           onTap: () => _resetForm(),
                           onSubmit: (_) => _unFocus(context),

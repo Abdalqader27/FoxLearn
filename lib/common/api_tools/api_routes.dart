@@ -1,7 +1,22 @@
 class ApiRoutes {
-  static const String BASE = "http://lms.elkood.com/";
-  static const String BASE_URL = "http://lms.elkood.com";
+  static const String BASE = "http://194.32.76.82:8751/";
+  static const String BASE_URL = "http://194.32.76.82:8751/";
   static const String BASE_API = BASE + "api/";
+
+  static const String NonDeterministicToDeterministic = BASE_API + "Automate/NonDeterministicToDeterministic";
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /// _____________________AD Sections_________________________________________________
   ///

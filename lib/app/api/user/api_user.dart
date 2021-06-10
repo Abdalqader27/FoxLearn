@@ -16,7 +16,7 @@ class ApiUser extends GetConnect with ApiUserServices, DioClientMixin {
       String phoneNumber, String password) async {
     try {
       final response = await dioClient.post(ApiRoutes.SIGN_IN,
-          data: {'phoneNumber': phoneNumber, 'password': password});
+          data: {'userName': phoneNumber, 'password': password});
       UserAccount user = UserAccount.fromJson(response);
       return ApiResult.success(data: user);
     } catch (e) {

@@ -4,6 +4,7 @@ import 'package:foxlearn/common/widgets/multi_select_dialog_Item.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:mdi/mdi.dart';
+import 'package:tuple/tuple.dart';
 
 class Service1Implement {
   List<Widget> filedStates = [];
@@ -12,7 +13,7 @@ class Service1Implement {
   List<TextEditingController> alphabetController = [];
   List<String> statesList = [], alphabetsList = [];
   List<List<String>> inputTable = [];
-  List<List<TextEditingController>> tableController = [[]];
+  List<List<Tuple2<Set<int>, TextEditingController>>> tableController = [[]];
   String info = "";
   Set<int> first = {};
   Set<int> end = {};
@@ -77,11 +78,13 @@ class Service1Implement {
         );
       },
     ))!;
-    Set<String> data = {};
+    List<String> text = [];
     temp.forEach((element) {
-      data.add(statesController[element].text);
+      text.add(statesController[element].text);
     });
-    tableController[j][i].text = data.toString();
+    TextEditingController controller = tableController[j][i].item2;
+    controller.text = text.toString();
+    tableController[j][i] = Tuple2(temp, controller);
     setState(() {});
   }
 
@@ -124,7 +127,7 @@ class Service1Implement {
                         for (int i = 0; i < alphabetController.length; ++i)
                           DataCell(
                             TextFormField(
-                              controller: tableController[j][i],
+                              controller: tableController[j][i].item2,
                               onTap: () {
                                 print("i= " + i.toString());
                                 print("j= " + j.toString());
@@ -214,7 +217,7 @@ class Service1Implement {
     );
   }
 
-  nfaInfo() {
+  void nfaInfo() {
     if (statesController.isNotEmpty && alphabetController.isNotEmpty) {
       info = "";
       alphabetsList.clear();
@@ -250,7 +253,7 @@ class Service1Implement {
 
       for (int j = 0; j < alphabetController.length; ++j) {
         tableController[statesController.length - 1]
-            .add(TextEditingController());
+            .add(Tuple2({}, TextEditingController()));
         inputTable[statesController.length - 1].add("-");
       }
       print("textEdition" + inputTable.toString());
@@ -261,7 +264,7 @@ class Service1Implement {
   void addColumn(setState) {
     setState(() {
       for (int j = 0; j < statesController.length; ++j) {
-        tableController[j].add(TextEditingController());
+        tableController[j].add(Tuple2({}, TextEditingController()));
         inputTable[j].add("-");
       }
       print("textEdition" + inputTable.toString());

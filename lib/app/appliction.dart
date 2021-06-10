@@ -45,7 +45,8 @@ class Application extends StatelessWidget {
         /// Page Sections -----------------
         /// -----------------
         getPages: AppPages.routes,
-        home: CheckAppVersion(builder: () => MyApp()),
+       // home: CheckAppVersion(builder: () => MyApp()),
+        home:  MyApp( ),
       ),
     );
   }

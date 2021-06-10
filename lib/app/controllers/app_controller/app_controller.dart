@@ -9,16 +9,16 @@ import 'package:get_storage/get_storage.dart';
 
 class AppController extends GetxController {
   final box = GetStorage();
-  final BuildContext context;
+//  final BuildContext context;
   Rx<AppState> appState;
   bool showAdsContent = true;
 
-  AppController(this.context, this.appState);
+  AppController(this.appState);
 
   @override
   void onInit() {
     super.onInit();
-    FirebaseNotification(context: context).setUpFirebase();
+  //  FirebaseNotification(context: context).setUpFirebase();
     listenWidget();
   }
 

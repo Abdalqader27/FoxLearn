@@ -1,5 +1,4 @@
 import 'package:catcher/core/catcher.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,20 +26,13 @@ void main() async {
   LocalDataSource.init();
   WidgetsFlutterBinding.ensureInitialized();
   if (kDebugMode) _initMoorInspector(LocalDataSource.appDatabase);
-  final _init = Firebase.initializeApp();
+  //final _init = Firebase.initializeApp();
 
   /// init build
-  dynamic init() => FutureBuilder<FirebaseApp>(
-        future: _init,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            Get.put<AppController>(
-                AppController(context, AppState.loggedIn().obs));
-            return Application();
-          } else
-            return Container();
-        },
-      );
+  dynamic init() {
+    Get.put<AppController>(AppController(AppState.loggedIn().obs));
+    return Application();
+  }
 
   /// ----------------------  Catcher Sections -------------------------------------///
   /// hi bood we commit this for you :-)
@@ -56,15 +48,7 @@ void main() async {
   else
 
     ///Run App is not exist because i have use the catcher library {
-    runApp(
-      FutureBuilder<FirebaseApp>(
-        future: _init,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) return init();
-          return Container();
-        },
-      ),
-    );
+    runApp(init());
 }
 
 Future<void> _initMoorInspector(AppDatabase appDatabase) async {

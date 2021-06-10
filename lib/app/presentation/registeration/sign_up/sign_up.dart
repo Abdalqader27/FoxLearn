@@ -22,7 +22,7 @@ class SignUp extends GetView<SignUpController> {
 
     /// Buttons Section ----------------------------------------------------------------------------
     final enterButton = NeuFlatButton(
-        onTap: () => controller.onClickOk(), text: AppString.CreateAccount);
+        onTap: () => {}, text: AppString.CreateAccount);
 
     return Scaffold(
       key: controller.scaffoldKey,

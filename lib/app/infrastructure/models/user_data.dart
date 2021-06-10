@@ -12,76 +12,47 @@ String userAccountToJson(UserAccount data) => json.encode(data.toJson());
 class UserAccount {
   UserAccount({
     required this.id,
-    required this.firstName,
-    required this.lastName,
+    required this.userName,
+    required this.name,
     required this.email,
-    required this.phoneNumber,
+    required this.phone,
     required this.password,
     required this.dob,
-    this.token,
-    this.deviceToken,
-    this.s3Credentials,
+    required this.deviceToken,
+    required this.token,
   });
 
   int id;
-  String firstName;
-  String lastName;
+  dynamic userName;
+  String name;
   String email;
-  String phoneNumber;
+  String phone;
   String password;
   DateTime dob;
-  String? token;
-  String? deviceToken;
-  String? s3Credentials;
-
-  UserAccount copyWith({
-    int? id,
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? phoneNumber,
-    String? password,
-    String? token,
-    DateTime? dob,
-    String? deviceToken,
-    String? s3Credentials,
-  }) =>
-      UserAccount(
-        id: id ?? this.id,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        email: email ?? this.email,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        password: password ?? this.password,
-        token: token ?? this.token,
-        dob: dob ?? this.dob,
-        deviceToken: deviceToken ?? this.deviceToken,
-        s3Credentials: s3Credentials ?? this.s3Credentials,
-      );
+  String deviceToken;
+  String token;
 
   factory UserAccount.fromJson(Map<String, dynamic> json) => UserAccount(
         id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
+        userName: json["userName"],
+        name: json["name"],
         email: json["email"],
-        phoneNumber: json["phoneNumber"],
+        phone: json["phone"],
         password: json["password"],
-        token: json["token"],
         dob: DateTime.parse(json["dob"]),
         deviceToken: json["deviceToken"],
-        s3Credentials: json["s3Credentials"],
+        token: json["token"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "firstName": firstName,
-        "lastName": lastName,
+        "userName": userName,
+        "name": name,
         "email": email,
-        "phoneNumber": phoneNumber,
+        "phone": phone,
         "password": password,
-        "token": token,
         "dob": dob.toIso8601String(),
         "deviceToken": deviceToken,
-        "s3Credentials": s3Credentials,
+        "token": token,
       };
 }
