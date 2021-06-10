@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foxlearn/app/presentation/home/widget/courses_banks/custom_tab_indicator.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppStyles {
@@ -36,7 +37,14 @@ class AppStyles {
       topLeft: Radius.circular(15),
     ),
   );
-
+  static ShapeBorder cardStyle4 = RoundedRectangleBorder(
+    borderRadius: BorderRadius.only(
+      bottomLeft: Radius.circular(15),
+      topRight: Radius.circular(15),
+      topLeft: Radius.circular(15),
+      bottomRight: Radius.circular(15),
+    ),
+  );
   static BorderRadius borderRadiusAll(double radius) => BorderRadius.all(
         Radius.circular(radius.sp),
       );

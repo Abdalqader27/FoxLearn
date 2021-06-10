@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foxlearn/app/presentation/home/widget/courses_banks/tab_bar_view.dart';
+import 'package:foxlearn/app/presentation/services/service1/service1_screen.dart';
 import 'package:get/get.dart';
 
 import 'home_implement.dart';
@@ -22,6 +23,16 @@ class HomeScreen extends StatelessWidget with HomeImplements {
         shrinkWrap: true,
         children: [
           imageTitle(),
+
+          Card(
+            elevation: 0,
+            child: ListTile(
+              onTap: (){
+                Get.to(()=>ServicesOneScreen());
+              },
+              title: Text("الخدمة الاولى"),
+            ),
+          ),
           // CustomPaint(
           //     size: Size(MediaQuery.of(context).size.width, 0),
           //

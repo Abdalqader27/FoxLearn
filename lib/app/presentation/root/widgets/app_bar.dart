@@ -7,10 +7,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppAppBar extends StatelessWidget {
   final int pageIndex;
-  final onTapDrawer;
-  AppAppBar({Key? key, required this.pageIndex, this.onTapDrawer}) : super(key: key);
+  final VoidCallback onTapDrawer;
+  AppAppBar({Key? key, required this.pageIndex, required this.onTapDrawer}) : super(key: key);
   @override
-  Widget build(_) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2.0.h),
       child: Row(
