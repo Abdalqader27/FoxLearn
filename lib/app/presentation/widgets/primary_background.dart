@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class PrimaryBackground extends StatelessWidget {
   final Widget child;
+
   const PrimaryBackground({
     Key? key,
     required this.child,
@@ -20,7 +21,6 @@ class PrimaryBackground extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Positioned.fill(
-
             child: SvgPicture.asset(
               "assets/svg/appBar2.svg",
             ),

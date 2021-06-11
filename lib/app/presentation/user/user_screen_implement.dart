@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foxlearn/app/presentation/home/widget/courses_banks/custom_tab_indicator.dart';
+import 'package:foxlearn/app/presentation/my_notes/pages/home_page.dart';
 import 'package:foxlearn/app/presentation/user/tabs_screen/activity_screen.dart';
 import 'package:foxlearn/app/presentation/user/tabs_screen/note_screen.dart';
 import 'package:foxlearn/app/presentation/user/tabs_screen/selected_material_screen.dart';
@@ -21,7 +22,8 @@ class UserScreenImplement {
             elevation: 0,
             shape: AppStyles.cardStyle1,
             child: ListTile(
-              title: Text("مرحبا بك ", style: AppTextStyles.medium(fontWeight: FontWeight.bold)),
+              title: Text("مرحبا بك ",
+                  style: AppTextStyles.medium(fontWeight: FontWeight.bold)),
               subtitle: Text("سعيدون بك يمكنك اﻹطلاع على انجازتك ونشاطاتك"),
             ),
           ),
@@ -48,8 +50,9 @@ class UserScreenImplement {
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: AppColors.LIGHT_Red,
         indicatorPadding: EdgeInsets.all(8.0),
-        indicator: RoundedRectangleTabIndicator(color: AppColors.LIGHT_Red, width: 30, weight: 3),
-        tabs: _tabs(["المواد المختارة", "النشاطات", "الملاحظات"]));
+        indicator: RoundedRectangleTabIndicator(
+            color: AppColors.LIGHT_Red, width: 30, weight: 3),
+        tabs: _tabs(["النشاطات", "الملاحظات"]));
   }
 
   List<Widget> _tabs(List<String> title) {
@@ -64,9 +67,9 @@ class UserScreenImplement {
 
   Widget tabBarView(animationController) {
     return TabBarView(children: [
-      SelectedMaterialScreen(animationController: animationController),
+      //  SelectedMaterialScreen(animationController: animationController),
       ActivityScreen(),
-      NoteScreen()
+      HomeNotePage()
     ]);
   }
 }

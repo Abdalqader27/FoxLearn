@@ -33,5 +33,5 @@ class AppAppBar extends StatelessWidget {
     );
   }
 
-  final List<String> title = ["الرئيسية ", "الملفات", "الخدمات", "اﻹختبارات", "الإحصائيات", "ملفي"];
+  final List<String> title = ["الرئيسية ", "الملفات", "الخدمات", "اﻹختبارات", "الإحصائيات", "أماكن البيع "];
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foxlearn/app/controllers/root_controller.dart';
 import 'package:foxlearn/app/presentation/files/files_screen.dart';
 import 'package:foxlearn/app/presentation/home/home_screen.dart';
+import 'package:foxlearn/app/presentation/point_of_sale_loc/point_sale_screen.dart';
 import 'package:foxlearn/app/presentation/root/widgets/app_bar.dart';
 import 'package:foxlearn/app/presentation/root/widgets/bottom_navigation.dart';
 import 'package:foxlearn/app/presentation/root/widgets/drawers_components.dart';
@@ -67,7 +68,8 @@ class RootScreen extends GetView<RootController> {
                         FilesScreen(),
                         ServicesScreen(),
                         TestsScreen(),
-                        StatisticsScreen(),
+                        // StatisticsScreen(),
+                        PointOfSaleScreen(),
                         UserScreen()
                       ],
                       onPageChanged: (index) {

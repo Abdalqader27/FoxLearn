@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:foxlearn/app/presentation/home/widget/courses_banks/tab_bar_view.dart';
 import 'package:foxlearn/app/presentation/services/service1/service1_screen.dart';
+import 'package:foxlearn/app/presentation/services/service3/service3_screen.dart';
+import 'package:foxlearn/app/presentation/services/service4/service4_screen.dart';
 import 'package:foxlearn/app/presentation/services/services2/service2_screen.dart';
 import 'package:get/get.dart';
 
@@ -42,8 +44,24 @@ class HomeScreen extends StatelessWidget with HomeImplements {
               },
               title: Text("الخدمة الثانية"),
             ),
+          ),       Card(
+            elevation: 0,
+            child: ListTile(
+              onTap: (){
+                Get.to(()=>Service3Screen());
+              },
+              title: Text("الخدمة الثالثة"),
+            ),
           ),
-
+          Card(
+            elevation: 0,
+            child: ListTile(
+              onTap: (){
+                Get.to(()=>Service4Screen());
+              },
+              title: Text("الخدمة الرابعة"),
+            ),
+          ),
           /// tab bar between the repeater (courses ) and banks -----------------------
           TabBarViewCoursesBanks(),
 

@@ -10,6 +10,7 @@ class Assets {
   static const String fontsSstArabicMedium = 'assets/fonts/sst_arabic_medium.ttf';
   static const String fontsSstArabicRoman = 'assets/fonts/sst_arabic_roman.ttf';
   static const String logoLogo = 'assets/logo/logo.png';
+
   static const String lottiLoading = 'assets/lotti/loading.json';
   static const String pngFeedbackImage = 'assets/png/feedbackImage.png';
   static const String pngHelpImage = 'assets/png/helpImage.png';
@@ -48,10 +49,10 @@ class Assets {
   static const String svgEditSquare = 'assets/svg/Edit_Square.svg';
   static const String svgEmpty = 'assets/svg/empty.svg';
   static const String svgExamination = 'assets/svg/Examination.svg';
-
   static const String svgFiMenu = 'assets/svg/fi_menu.svg';
   static const String svgFiles = 'assets/svg/files.svg';
   static const String svgFox = 'assets/svg/fox.svg';
+  static const String svgFoxGirl = 'assets/svg/Fox_girl.svg';
   static const String svgFoxGroup = 'assets/svg/fox_group.svg';
   static const String svgFoxlearn = 'assets/svg/Foxlearn.svg';
   static const String svgGame = 'assets/svg/Game.svg';

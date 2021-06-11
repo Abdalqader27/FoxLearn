@@ -23,7 +23,7 @@ class _UserScreenState extends State<UserScreen>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       initialIndex: 0,
       child: Container(
           child: Column(children: [

@@ -146,7 +146,7 @@ class AppCurvedBottomNavigation extends StatelessWidget {
                 icon: Icon(FontAwesome.book),
               ),
               CustomNavigationBarItem(
-                icon: Icon(FontAwesome.chart_bar),
+                icon: Icon(FontAwesome.location),
               ),
               CustomNavigationBarItem(
                 icon: Icon(FontAwesome.user),

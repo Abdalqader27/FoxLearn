@@ -32,7 +32,7 @@ class _Service2ScreenState extends State<Service2Screen> {
         return WebView(
           javascriptMode: JavascriptMode.unrestricted,
           onProgress: (progress) => print(progress),
-          initialUrl: 'http://194.32.76.82:8751/services/automat/',
+          initialUrl: 'http://194.32.76.82:8751/services/converting-from-non-deterministic-to-deterministic/',
         );
       })),
     );

@@ -3,20 +3,10 @@ class ApiRoutes {
   static const String BASE_URL = "http://194.32.76.82:8751/";
   static const String BASE_API = BASE + "api/";
 
-  static const String NonDeterministicToDeterministic = BASE_API + "Automate/NonDeterministicToDeterministic";
-
-
-
-
-
-
-
-
-
-
-
-
-
+  static const String NonDeterministicToDeterministic =
+      BASE_API + "Automate/NonDeterministicToDeterministic";
+  static const String EpsNfaToNfa = BASE_API + "Automate/EpsNfaToNfa";
+  static const String RegToDfa = BASE_API + "Automate/RegToDfa";
 
   /// _____________________AD Sections_________________________________________________
   ///
