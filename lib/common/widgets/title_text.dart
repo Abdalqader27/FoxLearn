@@ -18,11 +18,14 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
         fontFamily: 'sst-arabic',
+
       ),
       textAlign: TextAlign.right,
     );

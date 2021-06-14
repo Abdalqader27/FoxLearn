@@ -13,16 +13,19 @@ class RegToDfaOut {
   RegToDfaOut({
     required this.stepOne,
     required this.stepTwo,
+    required this.result,
   });
 
   List<List<String>> stepOne;
   List<List<String>> stepTwo;
+  String result;
 
   factory RegToDfaOut.fromJson(Map<String, dynamic> json) => RegToDfaOut(
         stepOne: List<List<String>>.from(
             json["stepOne"].map((x) => List<String>.from(x.map((x) => x)))),
         stepTwo: List<List<String>>.from(
             json["stepTwo"].map((x) => List<String>.from(x.map((x) => x)))),
+        result: json["result"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,5 +33,6 @@ class RegToDfaOut {
             stepOne.map((x) => List<dynamic>.from(x.map((x) => x)))),
         "stepTwo": List<dynamic>.from(
             stepTwo.map((x) => List<dynamic>.from(x.map((x) => x)))),
+        "result": result,
       };
 }

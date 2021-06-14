@@ -6,7 +6,8 @@ class ApiRoutes {
   static const String NonDeterministicToDeterministic =
       BASE_API + "Automate/NonDeterministicToDeterministic";
   static const String EpsNfaToNfa = BASE_API + "Automate/EpsNfaToNfa";
-  static const String RegToDfa = BASE_API + "Automate/RegToDfa";
+  static const String RegToDfa = BASE_API + "Automate/DfaToReg";
+  static const String Files = BASE_API + "File/GetFiles";
 
   /// _____________________AD Sections_________________________________________________
   ///

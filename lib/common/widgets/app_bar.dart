@@ -33,7 +33,7 @@ class AppBarUser extends StatelessWidget {
                 child: Container(
                     decoration: BoxDecoration(
                         color: color ?? AppColors.primaryColor,
-                        borderRadius: BorderRadius.circular(3.0.w)),
+                        borderRadius: BorderRadius.circular(15.0.w)),
                     padding: EdgeInsets.all(5.0.sp),
                     child: Center(
                         child: Text(
@@ -54,7 +54,7 @@ class AppBarUser extends StatelessWidget {
                       width: 7.0.h,
                       decoration: BoxDecoration(
                           color: color ?? AppColors.primaryColor,
-                          borderRadius: BorderRadius.circular(3.0.w)),
+                          borderRadius: BorderRadius.circular(15.0.w)),
                       child: Icon(Icons.arrow_forward_ios,
                           size: 14.0.sp, color: textColor == null ? AppColors.White : textColor)),
                 ),

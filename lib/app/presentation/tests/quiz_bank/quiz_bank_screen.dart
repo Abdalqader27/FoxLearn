@@ -108,7 +108,8 @@ class _QuizBankState extends State<QuizBank> with TickerProviderStateMixin {
                                                   examQuestionsList: [],
                                                   isActivated: true,
                                                   subjectExamId: 1,
-                                                  subjectExamName: "اللغات الصورية"),
+                                                  subjectExamName:
+                                                      "اللغات الصورية"),
                                               SubjectExamsList(
                                                   examQuestionsList: [],
                                                   isActivated: true,
@@ -137,5 +138,12 @@ class _QuizBankState extends State<QuizBank> with TickerProviderStateMixin {
                 ],
               );
             }));
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    animationController.dispose();
   }
 }

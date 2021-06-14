@@ -85,6 +85,32 @@ class _Service4DetailsState extends State<Service4Details> {
                               stepOne: snapshot.data!.stepTwo,
                               isFirst: false,
                             ),
+                            Card(
+                              elevation: 0,
+                              shape: AppStyles.cardStyle4,
+                              color: AppColors.kLightGrey.withOpacity(.8),
+                              margin: EdgeInsets.all(10),
+                              child: Card(
+                                  elevation: 0,
+                                  shape: AppStyles.cardStyle4,
+                                  margin: EdgeInsets.all(10),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                          reverse: true,
+                                          scrollDirection: Axis.horizontal,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(snapshot.data!.result,
+                                                style: TextStyle(
+                                                    letterSpacing: 1,
+                                                    fontWeight: FontWeight.w600)),
+                                          )),
+                                    ),
+                                  )),
+                            ),
+
                           ],
                         ),
                       )

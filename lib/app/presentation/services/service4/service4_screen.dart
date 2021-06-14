@@ -21,174 +21,174 @@ class _Service4ScreenState extends State<Service4Screen>
     with Service4Implement {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PrimaryBackground(
-        child: ListView(
-          padding: EdgeInsets.all(20),
-          children: [
-            SizedBox(
-              height: 20.0.h,
-            ),
-            Card(
-              color: AppColors.WHITE.withOpacity(.8),
-              elevation: 0,
-              shape: AppStyles.cardStyle4,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    "من REG To DFA",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+    return SafeArea(
+      child: Scaffold(
+        body: PrimaryBackground(
+          child: ListView(
+            padding: EdgeInsets.all(20),
+            children: [
+  
+              Card(
+                color: AppColors.WHITE.withOpacity(.8),
+                elevation: 0,
+                shape: AppStyles.cardStyle4,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    title: Text(
+                      "من REG To DFA",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle:
+                        Text("للتحويل من اﻷتومات اللاحتمي إلى أتومات حتمي "),
                   ),
-                  subtitle:
-                      Text("للتحويل من اﻷتومات اللاحتمي إلى أتومات حتمي "),
                 ),
               ),
-            ),
-            rowCard(
-              onTap1: () {
-                statesController.add(TextEditingController());
-                filedStates.add(TextField(
-                  onChanged: (data) {
-                    setState(() {});
-                  },
-                  controller: statesController[statesController.length - 1],
-                ));
-                addRows(setState);
-              },
-              onTap2: () {
-                setState(() {
-                  alphabetController.add(TextEditingController());
-                  fieldAlphabet.add(TextField(
+              rowCard(
+                onTap1: () {
+                  statesController.add(TextEditingController());
+                  filedStates.add(TextField(
                     onChanged: (data) {
                       setState(() {});
                     },
-                    controller:
-                        alphabetController[alphabetController.length - 1],
+                    controller: statesController[statesController.length - 1],
                   ));
-                  addColumn(setState);
-                });
-              },
-              title1: "الحالات",
-              title2: "الابجدية",
-              children1: filedStates,
-              children2: fieldAlphabet,
-            ),
-            Card(
-                elevation: 0,
-                color: AppColors.WHITE.withOpacity(.8),
-                shape: AppStyles.cardStyle4,
-                child: transitFun(context, setState)),
-            Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    elevation: 0,
-                    color: AppColors.WHITE.withOpacity(.8),
-                    shape: AppStyles.cardStyle4,
-                    child: ListTile(
-                      onTap: () {
-                        selectFirstState(context, setState);
+                  addRows(setState);
+                },
+                onTap2: () {
+                  setState(() {
+                    alphabetController.add(TextEditingController());
+                    fieldAlphabet.add(TextField(
+                      onChanged: (data) {
+                        setState(() {});
                       },
-                      title: Text(
-                        "الحالة الابتدائية ",
-                        style: TextStyle(fontSize: 11.0.sp),
-                      ),
-                      subtitle: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "q0 =$firstText ",
-                              style: TextStyle(
-                                  fontSize: 11.0.sp, letterSpacing: 1.2),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Card(
-                    elevation: 0,
-                    shape: AppStyles.cardStyle4,
-                    child: ListTile(
-                      onTap: () {
-                        selectEndState(context, setState);
-                      },
-                      title: Text(
-                        "الحالات النهائية ",
-                        style: TextStyle(fontSize: 11.0.sp),
-                      ),
-                      subtitle: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "F =$endText ",
-                              style: TextStyle(
-                                  fontSize: 11.0.sp, letterSpacing: 1.2),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            theQuintuple(),
-            RoundedButton(
-              onTap: () {
-                AutomateInput automate = AutomateInput(
-                    segma: [], q: [], start: '', delta: [], end: []);
-
-                for (int i = 0; i < statesController.length; ++i)
-                  automate.q.add(statesController[i].text.toString());
-                Logs.logger.i("q= " + automate.q.toString());
-
-// ------------------------------------------------------------------------------------------------------------
-                for (int i = 0; i < alphabetController.length; ++i)
-                  automate.segma.add(alphabetController[i].text.toString());
-                Logs.logger.i("segma= " + automate.segma.toString());
-// ------------------------------------------------------------------------------------------------------------
-
-                automate.start = firstText.first.toString();
-                Logs.logger.i("start= " + automate.start.toString());
-
-// ------------------------------------------------------------------------------------------------------------
-                endText.forEach((element) {
-                  automate.end.add(element);
-                });
-                Logs.logger.i("end= " + automate.end.toString());
-
-                List<List<int>> rows = [];
-                for (int i = 0; i < statesController.length; ++i) {
-                  rows.add([]);
-                  for (int j = 0; j < alphabetController.length; ++j) {
-                    Set<int> data = tableController[i][j].item1;
-                    rows[i].add(data.first + 1);
-                  }
-                }
-                automate.delta = rows;
-                Logs.logger.i("delta= " + rows.toString());
-
-                Get.to(() => Service4Details(
-                      automate: automate,
+                      controller:
+                          alphabetController[alphabetController.length - 1],
                     ));
-              },
-              color: AppColors.LIGHT_Red,
-              myChild: Text(
-                "تحويل الاتومات إلى حتمي  ",
-                style: TextStyle(
-                    color: AppColors.WHITE, fontWeight: FontWeight.bold),
+                    addColumn(setState);
+                  });
+                },
+                title1: "الحالات",
+                title2: "الابجدية",
+                children1: filedStates,
+                children2: fieldAlphabet,
               ),
-              borderColor: AppColors.LIGHT_Red,
-            ),
-          ],
+              Card(
+                  elevation: 0,
+                  color: AppColors.WHITE.withOpacity(.8),
+                  shape: AppStyles.cardStyle4,
+                  child: transitFun(context, setState)),
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      elevation: 0,
+                      color: AppColors.WHITE.withOpacity(.8),
+                      shape: AppStyles.cardStyle4,
+                      child: ListTile(
+                        onTap: () {
+                          selectFirstState(context, setState);
+                        },
+                        title: Text(
+                          "الحالة الابتدائية ",
+                          style: TextStyle(fontSize: 11.0.sp),
+                        ),
+                        subtitle: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "q0 =$firstText ",
+                                style: TextStyle(
+                                    fontSize: 11.0.sp, letterSpacing: 1.2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Card(
+                      elevation: 0,
+                      shape: AppStyles.cardStyle4,
+                      child: ListTile(
+                        onTap: () {
+                          selectEndState(context, setState);
+                        },
+                        title: Text(
+                          "الحالات النهائية ",
+                          style: TextStyle(fontSize: 11.0.sp),
+                        ),
+                        subtitle: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "F =$endText ",
+                                style: TextStyle(
+                                    fontSize: 11.0.sp, letterSpacing: 1.2),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              theQuintuple(),
+              RoundedButton(
+                onTap: () {
+                  AutomateInput automate = AutomateInput(
+                      segma: [], q: [], start: '', delta: [], end: []);
+
+                  for (int i = 0; i < statesController.length; ++i)
+                    automate.q.add(statesController[i].text.toString());
+                  Logs.logger.i("q= " + automate.q.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                  for (int i = 0; i < alphabetController.length; ++i)
+                    automate.segma.add(alphabetController[i].text.toString());
+                  Logs.logger.i("segma= " + automate.segma.toString());
+// ------------------------------------------------------------------------------------------------------------
+
+                  automate.start = firstText.first.toString();
+                  Logs.logger.i("start= " + automate.start.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                  endText.forEach((element) {
+                    automate.end.add(element);
+                  });
+                  Logs.logger.i("end= " + automate.end.toString());
+
+                  List<List<int>> rows = [];
+                  for (int i = 0; i < statesController.length; ++i) {
+                    rows.add([]);
+                    for (int j = 0; j < alphabetController.length; ++j) {
+                      Set<int> data = tableController[i][j].item1;
+                      rows[i].add(data.first + 1);
+                    }
+                  }
+                  automate.delta = rows;
+                  Logs.logger.i("delta= " + rows.toString());
+
+                  Get.to(() => Service4Details(
+                        automate: automate,
+                      ));
+                },
+                color: AppColors.LIGHT_Red,
+                myChild: Text(
+                  "تحويل الاتومات إلى حتمي  ",
+                  style: TextStyle(
+                      color: AppColors.WHITE, fontWeight: FontWeight.bold),
+                ),
+                borderColor: AppColors.LIGHT_Red,
+              ),
+            ],
+          ),
         ),
       ),
     );

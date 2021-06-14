@@ -25,7 +25,7 @@ class RootScreen extends GetView<RootController> {
           RootBackground(marginBottom: 0.0),
           Scaffold(
               backgroundColor: Colors.transparent,
-              drawer: Card(
+              endDrawer: Card(
                 margin: EdgeInsets.all(10),
                 clipBehavior: Clip.antiAlias,
                 shape: BeveledRectangleBorder(
@@ -54,7 +54,7 @@ class RootScreen extends GetView<RootController> {
                   /// App Bar Sections ----------------------------------
                   AppAppBar(
                       pageIndex: controller.indexPage.value,
-                      onTapDrawer: () => Scaffold.of(context).openDrawer()
+                      onTapDrawer: () => Scaffold.of(context).openEndDrawer()
 
                   ),
 
