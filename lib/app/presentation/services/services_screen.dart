@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foxlearn/generated/assets.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -16,27 +17,28 @@ class ServicesScreen extends StatefulWidget {
 
 var cardAspectRatio = 12.0 / 16.0;
 var widgetAspectRatio = cardAspectRatio * 1.2;
-List<String> images = [
-  "assets/png/login_bottom.png",
-  "assets/png/login_bottom.png",
-  "assets/png/login_bottom.png",
-  "assets/png/login_bottom.png",
-];
+
 
 List<String> title = [
-  "الأتومات المنتهي الحتمي ",
-  "POKEMON",
-  "CROP CRAFT",
-  "MONSTER MADOUSHI",
-  "BLACK CLOVER TV",
+  " NFA - > DFA",
+  " Eps NFA - > DFA",
+  " Draw Automate",
+  " Dfa - > Reg",
+];
+List<String> subtitle = [
+  "تحويل من اﻷتومات  المنتهي اللاحتمي إلى أتومات منتهي حتمي ",
+  "تحويل من اﻷتومات  المنتهي اللاحتمي مع أوبسلن إلى أتومات منتهي حتمي ",
+  "رسم اﻷتومات وعرض جدول الأنتقال الخاص به  ",
+  "تحويل من اﻷتومات  المنتهي الحتمي  إلى تعبير منتظم  ",
+
 ];
 
 class _ServicesScreenState extends State<ServicesScreen> {
-  var currentPage = images.length - 1.0;
+  var currentPage = title.length - 1.0;
 
   @override
   Widget build(BuildContext context) {
-    PageController controller = PageController(initialPage: images.length - 1);
+    PageController controller = PageController(initialPage: title.length - 1);
     controller.addListener(() {
       setState(() {
         currentPage = controller.page!;
@@ -49,9 +51,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Text("عدد الخدمات : 3  "),
+              Text("عدد الخدمات : 4  ",style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.WHITE),),
               SizedBox(height: 10,),
-              SvgPicture.asset("assets/svg/undraw_Video_streaming_re_v3qg.svg",height: 140,),
+              SvgPicture.asset(Assets.svgFox,height: 120,),
 
               Directionality(
                 textDirection: TextDirection.ltr,
@@ -60,7 +62,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     CardScrollWidget(currentPage),
                     Positioned.fill(
                       child: PageView.builder(
-                        itemCount: images.length,
+                        itemCount: title.length,
                         controller: controller,
                         reverse: true,
                         itemBuilder: (context, index) {
@@ -106,7 +108,7 @@ class CardScrollWidget extends StatelessWidget {
 
         List<Widget> cardList = [];
 
-        for (var i = 0; i < images.length; i++) {
+        for (var i = 0; i < title.length; i++) {
           var delta = i - currentPage;
           bool isOnRight = delta > 0;
 
@@ -122,8 +124,9 @@ class CardScrollWidget extends StatelessWidget {
             start: start,
             textDirection: TextDirection.rtl,
             child: Card(
-              elevation: 0,
-              shape: AppStyles.cardStyle2,
+              elevation: 0.7,
+              clipBehavior: Clip.antiAlias,
+              shape: AppStyles.cardStyle3,
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: AspectRatio(
@@ -131,55 +134,71 @@ class CardScrollWidget extends StatelessWidget {
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-                      Image.asset(images[i], fit: BoxFit.cover),
+                      Opacity(
+                          opacity: .2,
+                          child: Image.asset( "assets/png/main_bottom.png", fit: BoxFit.cover,color: AppColors.grey,)),
                       Align(
                         alignment: Alignment.bottomLeft,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              child: ListTile(
-                                title: Text(title[i],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold
-
-                                    )),
-                                subtitle: Text("تعريفات  وهلقصص حول الاتومات المنتهي والغير المنتهي  ...... "),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SvgPicture.asset(Assets.svgLock,width: 20.0.w,),
                               ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 30),
-                              child: Container(
-                                width: 40,
-                                height: 40,
+                              Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 5.0, vertical: 0.0),
-                                //child: Text("Read Later",
-                                // style: TextStyle(color: Colors.white)),
-                                child: Container(
-                                  child: Center(
-                                    child: TextButton(
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: AppColors.LIGHT_Red,
-                                          shape: BeveledRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                  topRight:
-                                                      Radius.circular(7)))),
-                                      child: Text('بدأ الان',
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                      onPressed: () {},
+                                    horizontal: 16.0, vertical: 8.0),
+                                child: ListTile(
+                                  title: Text(title[i],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20
+
+                                      )),
+                                  subtitle: Card(
+                                    elevation: 0,
+                                    shape: AppStyles.cardStyle4,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text( subtitle[i]),
                                     ),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
+
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 50, vertical: 30),
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 5.0, vertical: 0.0),
+                                  //child: Text("Read Later",
+                                  // style: TextStyle(color: Colors.white)),
+                                  child: Container(
+                                    child: Center(
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: AppColors.LIGHT_Red,
+                                            shape: BeveledRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(7)))),
+                                        child: Text('بدأ الان',
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
                     ],

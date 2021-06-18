@@ -18,10 +18,10 @@ class PosLocModel {
     required this.lat,
   });
 
-  int id;
-  String name;
-  int lag;
-  int lat;
+  dynamic id;
+  dynamic name;
+  dynamic lag;
+  dynamic lat;
 
   factory PosLocModel.fromJson(Map<String, dynamic> json) => PosLocModel(
         id: json["id"],

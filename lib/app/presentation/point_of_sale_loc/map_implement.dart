@@ -32,29 +32,30 @@ class MapImplement {
         } else {
           mapController!.setMapStyle(lightMapStyle);
         }
-      } catch (e) {
-      }
+      } catch (e) {}
     }
   }
 
   void onCameraMove(CameraPosition cameraPosition) {
-    MapSource.mapBlocHelper!.manager.onCameraMove(cameraPosition);
+    MapSource.mapBlocHelper.manager.onCameraMove(cameraPosition);
     if (currentZoom != previousZoom) {
       previousZoom = currentZoom;
-      MapSource.mapBlocHelper!.setIsLoading(true);
+      MapSource.mapBlocHelper.setIsLoading(true);
     } else {
       currentZoom = cameraPosition.zoom;
     }
   }
 
   void onCameraIdle() {
-    MapSource.mapBlocHelper!.manager.updateMap();
-    if (currentZoom != previousZoom) MapSource.mapBlocHelper!.setIsLoading(false);
+    MapSource.mapBlocHelper.manager.updateMap();
+    if (currentZoom != previousZoom)
+      MapSource.mapBlocHelper.setIsLoading(false);
   }
 
   void goToMyLocation(location) async {
     mapController!.animateCamera(CameraUpdate.newCameraPosition(
-      CameraPosition(target: LatLng(location?.latitude, location?.longitude), zoom: 17),
+      CameraPosition(
+          target: LatLng(location?.latitude, location?.longitude), zoom: 17),
     ));
   }
 
@@ -71,14 +72,16 @@ class MapImplement {
 
   initCameraPosition(LocationData? myLocation) {
     cameraPosition = CameraPosition(
-        target: (myLocation != null && myLocation.latitude != null && myLocation.longitude != null)
+        target: (myLocation != null &&
+                myLocation.latitude != null &&
+                myLocation.longitude != null)
             ? LatLng(myLocation.latitude!, myLocation.longitude!)
             : LatLng(36.217224577189995, 37.14486960321665),
         zoom: 12.0);
   }
 
   Widget getMapLoading() => StreamBuilder<bool>(
-      stream: MapSource.mapBlocHelper!.getIsLoading,
+      stream: MapSource.mapBlocHelper.getIsLoading,
       builder: (context, snapshot) {
         if (snapshot.data == null || snapshot.data == false) return Container();
         return Positioned(

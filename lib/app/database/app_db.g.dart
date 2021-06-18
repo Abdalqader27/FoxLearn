@@ -113,11 +113,12 @@ class PosLocTableCompanion extends UpdateCompanion<PosLocTableData> {
     this.lat = const Value.absent(),
   });
   PosLocTableCompanion.insert({
-    this.id = const Value.absent(),
+    required int id,
     required String name,
     this.lag = const Value.absent(),
     this.lat = const Value.absent(),
-  }) : name = Value(name);
+  })  : id = Value(id),
+        name = Value(name);
   static Insertable<PosLocTableData> custom({
     Expression<int>? id,
     Expression<String>? name,
@@ -239,6 +240,8 @@ class $PosLocTableTable extends PosLocTable
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -258,7 +261,7 @@ class $PosLocTableTable extends PosLocTable
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
   @override
   PosLocTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;

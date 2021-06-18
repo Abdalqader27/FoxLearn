@@ -15,10 +15,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../main.dart';
 import '../place.dart';
 
 class MapBlocHelper extends BaseBloc {
-  GlobalKey<ScaffoldState> key;
   late ClusterManager manager;
   late final List<ClusterItem<Place>> items = [];
   Set<Marker> markers = Set();
@@ -42,18 +42,22 @@ class MapBlocHelper extends BaseBloc {
   Function(bool) get setIsLoading => _isLoading.sink.add;
 
   /// Contractor
-  MapBlocHelper(this.key) {
+  MapBlocHelper() {
     setIsLoading(true);
-    appDatabase.posLocDao.watchAll().listen((data) {
+    database.posLocDao.watchAllWithLatLong().forEach((data) {
       items.clear();
-      List.generate(
-          data.length,
-          (index) => items.add(ClusterItem(
-              LatLng(
-                double.tryParse(data[index].lat.toString())!,
-                double.tryParse(data[index].lag.toString())!,
-              ),
-              item: Place(data[index].id, name: data[index].name))));
+      List.generate(data.length, (index) {
+        if (data[index].lat.toString() != "null" &&
+            data[index].lag.toString() != " null")
+          try {
+            items.add(ClusterItem(
+                LatLng(
+                  double.parse(data[index].lat.toString()),
+                  double.parse(data[index].lag.toString()),
+                ),
+                item: Place(data[index].id, name: data[index].name)));
+          } catch (e) {}
+      });
     });
 
     manager = initClusterManager();
@@ -88,7 +92,7 @@ class MapBlocHelper extends BaseBloc {
           infoWindow: !cluster.isMultiple
               ? InfoWindow(
                   onTap: () async {
-                    final data = await appDatabase.posLocDao
+                    final data = await database.posLocDao
                         .getWithLatLongById(cluster.items.first!.shopId);
                     if (data != null) {}
                     // Functions.openIntent(
@@ -107,7 +111,7 @@ class MapBlocHelper extends BaseBloc {
       };
 
   Future<List<String>> getSuggestions(String query) async {
-    List<String> temp = await appDatabase.posLocDao.getMapSuggestion(query);
+    List<String> temp = await database.posLocDao.getMapSuggestion(query);
 
     return temp;
   }
@@ -116,7 +120,7 @@ class MapBlocHelper extends BaseBloc {
     setIsLoading(true);
     if (text.isNotEmpty) {
       List<PosLocTableData> result =
-          await appDatabase.posLocDao.getPosByName(text);
+          await database.posLocDao.getPosByName(text);
       manager.setItems(<ClusterItem<Place>>[
         for (int i = 0; i < result.length; ++i)
           ClusterItem(
@@ -156,7 +160,7 @@ class MapBlocHelper extends BaseBloc {
 
     final PictureRecorder pictureRecorder = PictureRecorder();
     final Canvas canvas = Canvas(pictureRecorder);
-    final Paint paint1 = Paint()..color = AppColors.ACCENT;
+    final Paint paint1 = Paint()..color = AppColors.LIGHT_Red;
     final Paint paint2 = Paint()..color = AppColors.LIGHT_Red;
 
     canvas.drawCircle(Offset(size / 2, size / 2), size / 2.0, paint1);

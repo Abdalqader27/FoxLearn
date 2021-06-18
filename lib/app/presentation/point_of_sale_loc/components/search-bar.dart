@@ -21,7 +21,7 @@ class SearchBarMap extends StatelessWidget {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
               child: Container(
-                  height: 85,
+                  height: 55,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       boxShadow: [
@@ -61,7 +61,7 @@ class SearchBarMap extends StatelessWidget {
                                   ),
                                   onTap: () {
                                     typeAheadController.clear();
-                                    MapSource.mapBlocHelper!.filterMarkers("");
+                                    MapSource.mapBlocHelper.filterMarkers("");
                                     // gMapBloc!.changeFilter(false);
                                   }))),
                       itemBuilder: (context, dynamic suggestion) => ListTile(
@@ -70,7 +70,7 @@ class SearchBarMap extends StatelessWidget {
                               child: Text(suggestion))),
                       suggestionsCallback: (pattern) {
                         if (typeAheadController.text.isNotEmpty)
-                          return MapSource.mapBlocHelper!
+                          return MapSource.mapBlocHelper
                               .getSuggestions(pattern);
                         return Future.value(<String>[]);
                       },
@@ -79,8 +79,8 @@ class SearchBarMap extends StatelessWidget {
                               suggestionsBox,
                       onSuggestionSelected: (dynamic suggestion) {
                         typeAheadController.text = suggestion;
-                        MapSource.mapBlocHelper!.filterMarkers(suggestion);
-                        MapSource.mapBlocHelper!.changeFilter(false);
+                        MapSource.mapBlocHelper.filterMarkers(suggestion);
+                        MapSource.mapBlocHelper.changeFilter(false);
                         FocusScope.of(context).requestFocus(new FocusNode());
                       },
                     ),

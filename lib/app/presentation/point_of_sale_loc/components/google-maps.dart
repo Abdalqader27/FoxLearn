@@ -11,11 +11,9 @@ import '../map_implement.dart';
 import 'material/button-map.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
-  final isMapSatellite;
 
   const GoogleMapsScreen({
     Key? key,
-    this.isMapSatellite,
   }) : super(key: key);
 
   @override
@@ -35,7 +33,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
     super.initState();
     WidgetsBinding.instance!.addObserver(this);
     loadMapStyles();
-    mapType = (!widget.isMapSatellite) ? MapType.normal : MapType.satellite;
+    initCameraPosition(null);
   }
 
   @override
@@ -50,7 +48,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
     return Stack(
       children: [
         StreamBuilder(
-            stream: MapSource.mapBlocHelper!.markerList,
+            stream: MapSource.mapBlocHelper.markerList,
             builder: (context, marker) {
               return SizedBox(
                 key: Key(Theme.of(context).brightness.toString()),
@@ -58,7 +56,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
               );
             }),
         appBarGradients(context: context),
-        mapButtons(),
         getMapLoading(),
       ],
     );
@@ -66,7 +63,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
 
   Widget googleMapView(marker) {
     return GoogleMap(
-      mapType: mapType,
       initialCameraPosition: cameraPosition,
       onMapCreated: (GoogleMapController controller) => onMapCreated(controller),
       onCameraMove: onCameraMove,
@@ -87,7 +83,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
 
   onMapCreated(controller) {
     mapController = controller;
-    MapSource.mapBlocHelper!.manager.setMapController(controller);
+    MapSource.mapBlocHelper.manager.setMapController(controller);
     setMapStyle(context);
   }
 
@@ -101,23 +97,4 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen>
         }
       });
 
-  Widget mapButtons() {
-    return Align(
-      alignment: Alignment.bottomLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            circleButton(context,
-                icon: Icon(Icons.map_outlined, color: AppColors.WHITE),
-                heroTag: "satalate",
-                tooltip: "تغير عرض الخريطة ",
-                onPressed: () => changeMapSatellite()),
-
-          ],
-        ),
-      ),
-    );
-  }
 }

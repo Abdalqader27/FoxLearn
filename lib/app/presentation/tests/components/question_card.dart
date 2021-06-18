@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foxlearn/app/presentation/tests/controllers/question_controller.dart';
-import 'package:foxlearn/app/presentation/tests/models/Questions.dart';
+import 'package:foxlearn/app/presentation/tests/models/test_model.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:get/get.dart';
 import '../constants.dart';
@@ -14,7 +14,7 @@ class QuestionCard extends StatelessWidget {
     required this.question,
   }) : super(key: key);
 
-  final Question question;
+  final TestModel question;
 
   @override
   Widget build(BuildContext context) {

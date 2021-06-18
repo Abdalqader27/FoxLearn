@@ -1,7 +1,8 @@
 import 'package:foxlearn/app/api/dio_client_mixin.dart';
 import 'package:foxlearn/app/presentation/tests/subject_model.dart';
-import 'package:foxlearn/app/presentation/tests/test_model.dart';
 import 'package:foxlearn/common/api_tools/api_routes.dart';
+
+import 'models/test_model.dart';
 
 class TestsApi with DioClientMixin {
   Future<List<TestModel>> getQuestion(id) async {

@@ -14,6 +14,8 @@ import 'app/database/app_db.dart';
 import 'app/database/locale_data_source.dart';
 import 'common/exceptions/error_handling/catcher_config.dart';
 
+final AppDatabase database = AppDatabase();
+
 /// CREATED BY ABD ALQADER ALNAJJAR 2021 / 1 / 30
 /// Update  BY ABD ALQADER ALNAJJAR 2021 / 3 / 3 USING LOVE OF GETX lib
 /// ------------------------------------------------------------

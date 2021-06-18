@@ -4,13 +4,10 @@ import 'package:foxlearn/app/presentation/home/widget/courses_banks/custom_tab_i
 import 'package:foxlearn/app/presentation/tests/quiz_screen.dart';
 import 'package:foxlearn/app/presentation/tests/subject_model.dart';
 import 'package:foxlearn/app/presentation/tests/test_api.dart';
-import 'package:foxlearn/app/presentation/tests/test_details.dart';
-import 'package:foxlearn/app/presentation/tests/test_model.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:get/get.dart';
-
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -48,8 +45,10 @@ class _SubjectScreenState extends State<SubjectScreen>
                     duration: Duration(milliseconds: 500),
                     scaleFactor: 2.5,
                     onPressed: () {
-                      Get.to(()=>QuizScreen());
-                   //   Get.to(() => TestDetails(id: current.id));
+                      Get.to(() => QuizScreen(
+                            id: current.id,
+                          ));
+                      //   Get.to(() => TestDetails(id: current.id));
                     },
                     child: Card(
                       color: AppColors.WHITE.withOpacity(.99),

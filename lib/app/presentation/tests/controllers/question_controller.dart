@@ -1,13 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:foxlearn/app/presentation/tests/models/Questions.dart';
+import 'package:foxlearn/app/presentation/tests/models/test_model.dart';
 import 'package:foxlearn/app/presentation/tests/score/score_screen.dart';
+import 'package:foxlearn/app/presentation/tests/test_api.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with StateMixin<List<TestModel>>, SingleGetTickerProviderMixin {
   // Lets animated our progress bar
 
   late AnimationController _animationController;
@@ -20,17 +21,15 @@ class QuestionController extends GetxController
 
   PageController get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index']),
-      )
-      .toList();
+  List<TestModel> _questions = [];
 
-  List<Question> get questions => this._questions;
+  List<TestModel> get questions => this._questions;
+
+  getQuestion(int id) async {
+    change(questions, status: RxStatus.loading());
+    _questions = await TestsApi().getQuestion(id);
+    change(questions, status: RxStatus.success());
+  }
 
   bool _isAnswered = false;
 
@@ -81,10 +80,10 @@ class QuestionController extends GetxController
     _pageController.dispose();
   }
 
-  void checkAns(Question question, int selectedIndex) {
+  void checkAns(TestModel question, int selectedIndex) {
     // because once user press any option then it will run
     _isAnswered = true;
-    _correctAns = question.answer;
+    _correctAns = question.answerIndex;
     _selectedAns = selectedIndex;
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;

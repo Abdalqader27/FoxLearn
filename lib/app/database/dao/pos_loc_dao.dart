@@ -70,4 +70,7 @@ class PosLocDao extends DatabaseAccessor<AppDatabase> with _$PosLocDaoMixin {
   Future<PosLocTableData?> getById(int? id) =>
       (select(posLocTable)..where((tbl) => tbl.id.equals(id)))
           .getSingleOrNull();
+
+
+  Future deleteAll()=>delete(posLocTable).go();
 }
