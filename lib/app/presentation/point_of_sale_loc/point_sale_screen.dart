@@ -1,75 +1,62 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foxlearn/app/presentation/root/widgets/root_background.dart';
+import 'package:flutter/services.dart';
+import 'package:foxlearn/app/database/app_db.dart';
+import 'package:foxlearn/app/presentation/point_of_sale_loc/api_point_of_sale.dart';
+import 'package:foxlearn/app/presentation/point_of_sale_loc/components/google-maps.dart';
+import 'package:foxlearn/app/presentation/point_of_sale_loc/pos_loc_model.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
-import 'package:foxlearn/common/widgets/progress_Indicator.dart';
-import 'package:foxlearn/generated/assets.dart';
+import 'package:foxlearn/common/objects.dart';
+import 'package:foxlearn/common/utils/shared-preferences.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-class PointOfSaleScreen extends StatefulWidget {
-  const PointOfSaleScreen({Key? key}) : super(key: key);
+
+import 'package:location/location.dart';
+import 'package:provider/provider.dart';
+
+class PointOfSaleMap extends StatefulWidget {
+  const PointOfSaleMap({Key? key}) : super(key: key);
 
   @override
-  _PointOfSaleScreenState createState() => _PointOfSaleScreenState();
+  _PointOfSaleMapState createState() => _PointOfSaleMapState();
 }
 
-class _PointOfSaleScreenState extends State<PointOfSaleScreen> {
-  late GoogleMapController googleMapController;
+class _PointOfSaleMapState extends State<PointOfSaleMap> {
+  bool flag = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(top: 2.0.h),
-        child: Stack(
-          children: [
-            FutureBuilder<Object>(
-              future: null,
-              builder: (context, snapshot) {
-
-                return googleMap();
+    return FutureBuilder<List<PosLocModel>>(
+        future: ApiPointOfSale().getPosLocation(),
+        builder: (_, s) {
+          if (s.data == null)
+            return LottieLoading();
+          else {
+            final data = s.data;
+            if (!flag) {
+              for (int i = 0; i < data!.length; ++i) {
+                appDatabase.posLocDao.insert(PosLocTableData(
+                    id: data[i].id,
+                    name: data[i].name,
+                    lag: data[i].lag.toString(),
+                    lat: data[i].lat.toString()));
               }
-            ),
-            LottieLoading(),
-            Container(
-              height: 5.0.h,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(),
-              child: Card(
-                elevation: 0,
-                margin: EdgeInsets.all(0),
-                semanticContainer: false,
-                borderOnForeground: false,
-                clipBehavior: Clip.antiAlias,
-                color: AppColors.LIGHT_Red,
-                shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(30)),
-                ),
-              ),
-              // child: CustomPaint(
-              //   painter: RPSCustomPainter(AppColors.LIGHT_Red),
-              // ),
-            )
-     ],
-        ));
+              flag = true;
+            }
+            return FutureBuilder(
+                future: SharedPreferencesHandler.getSharedPreference(
+                    "mapType", ValueType.BOOL),
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) return LottieLoading();
+                  return GoogleMapsScreen(
+                    isMapSatellite: snapshot.data,
+                  );
+                });
+          }
+        });
   }
-
-  Widget googleMap() {
-    return GoogleMap(
-        initialCameraPosition:
-            CameraPosition(target: LatLng(34.8020744, 38.9968147), tilt: 0,zoom: 20),
-        onMapCreated: onMapCreated,
-        indoorViewEnabled: false,
-        compassEnabled: true,
-        trafficEnabled: false,
-        myLocationEnabled: true,
-        rotateGesturesEnabled: true,
-        tiltGesturesEnabled: false,
-        zoomControlsEnabled: false,
-        zoomGesturesEnabled: true,
-        myLocationButtonEnabled: false,
-        mapToolbarEnabled: false);}
-
-  void onMapCreated(GoogleMapController controller) =>
-      googleMapController = controller;
 }

@@ -15,23 +15,26 @@ class AppAppBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 2.0.h),
       child: Row(
         children: [
-          CircleButton(
-            onTap: onTapDrawer,
-            icon: Assets.svgMenu,
+          // CircleButton(
+          //   onTap: onTapDrawer,
+          //   icon: Assets.svgMenu,
+          // ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title[pageIndex],
+              style: AppTextStyles.title().copyWith(color: AppColors.WHITE),
+            ),
           ),
-          Text(
-            title[pageIndex],
-            style: AppTextStyles.title().copyWith(color: AppColors.WHITE),
-          ),
-          CircleButton(
-            onTap: () {},
-            icon: Assets.svgSearch,
-          )
+          // CircleButton(
+          //   onTap: () {},
+          //   icon: Assets.svgSearch,
+          // )
         ],
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
       ),
     );
   }
 
-  final List<String> title = ["الرئيسية ", "الملفات", "الخدمات", "اﻹختبارات", "الإحصائيات", "أماكن البيع "];
+  final List<String> title = ["الرئيسية ", "الملفات", "الخدمات", "اﻹختبارات","أماكن البيع ", "المزيد"];
 }

@@ -8,6 +8,9 @@ class ApiRoutes {
   static const String EpsNfaToNfa = BASE_API + "Automate/EpsNfaToNfa";
   static const String RegToDfa = BASE_API + "Automate/DfaToReg";
   static const String Files = BASE_API + "File/GetFiles";
+  static const String PosLocation = BASE_API + "User/GetPosLocations";
+  static const String Test = BASE_API + "Question/GetQuestions";
+  static const String Subjects = BASE_API + "Subject/GetSubjects";
 
   /// _____________________AD Sections_________________________________________________
   ///

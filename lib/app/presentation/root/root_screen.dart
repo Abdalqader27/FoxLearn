@@ -9,7 +9,7 @@ import 'package:foxlearn/app/presentation/root/widgets/drawers_components.dart';
 import 'package:foxlearn/app/presentation/root/widgets/root_background.dart';
 import 'package:foxlearn/app/presentation/services/services_screen.dart';
 import 'package:foxlearn/app/presentation/statistics/statistics_screen.dart';
-import 'package:foxlearn/app/presentation/tests/test_screen.dart';
+import 'package:foxlearn/app/presentation/tests/subject_screen.dart';
 import 'package:foxlearn/app/presentation/user/user_screen.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:get/get.dart';
@@ -52,11 +52,11 @@ class RootScreen extends GetView<RootController> {
                   SizedBox(height: 2.0.h),
 
                   /// App Bar Sections ----------------------------------
-                  AppAppBar(
+                  Obx(()=>AppAppBar(
                       pageIndex: controller.indexPage.value,
                       onTapDrawer: () => Scaffold.of(context).openEndDrawer()
 
-                  ),
+                  )),
 
                   /// Page View Sections -------------------------------
                   Expanded(
@@ -67,9 +67,9 @@ class RootScreen extends GetView<RootController> {
                         HomeScreen(),
                         FilesScreen(),
                         ServicesScreen(),
-                        TestsScreen(),
+                        SubjectScreen(),
                         // StatisticsScreen(),
-                        PointOfSaleScreen(),
+                        PointOfSaleMap(),
                         UserScreen()
                       ],
                       onPageChanged: (index) {

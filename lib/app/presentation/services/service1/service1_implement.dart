@@ -127,6 +127,7 @@ class Service1Implement {
                         for (int i = 0; i < alphabetController.length; ++i)
                           DataCell(
                             TextFormField(
+                              readOnly: true,
                               controller: tableController[j][i].item2,
                               onTap: () {
                                 print("i= " + i.toString());

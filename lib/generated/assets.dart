@@ -2,15 +2,19 @@
 class Assets {
   Assets._();
 
+  static const String assetsDark = 'assets/dark.json';
+  static const String assetsPersonalMode = 'assets/personal_mode.json';
   static const String assetsSvgHome = 'assets/svg/home.svg';
   static const String assetsSvgSearch = 'assets/svg/search.svg';
   static const String assetsSvgUnlock = 'assets/svg/unlock.svg';
+  static const String assetsUberMode = 'assets/uber_mode.json';
   static const String fontsSstArabicBold = 'assets/fonts/sst_arabic_bold.ttf';
   static const String fontsSstArabicLight = 'assets/fonts/sst_arabic_light.ttf';
   static const String fontsSstArabicMedium = 'assets/fonts/sst_arabic_medium.ttf';
   static const String fontsSstArabicRoman = 'assets/fonts/sst_arabic_roman.ttf';
+  static const String iconsBg = 'assets/icons/bg.svg';
+  static const String iconsClock = 'assets/icons/clock.svg';
   static const String logoLogo = 'assets/logo/logo.png';
-
   static const String lottiLoading = 'assets/lotti/loading.json';
   static const String pngFeedbackImage = 'assets/png/feedbackImage.png';
   static const String pngHelpImage = 'assets/png/helpImage.png';
