@@ -87,12 +87,12 @@ class Service4Implement {
       text.add(statesController[element].text);
     });
     TextEditingController controller = tableController[j][i].item2;
-    controller.text = text.toSet().toString();
+    controller.text =
+        text.toSet().toString().replaceAll("}", "").replaceAll("{", "");
     tableController[j][i] = Tuple2(temp, controller);
     nfaInfo();
 
     setState(() {});
-
   }
 
   Widget transitFun(context, setState) {
@@ -255,9 +255,9 @@ class Service4Implement {
         }
       }
 
-      info += "q0 = {${statesController[0].text} }\nF = { ";
-      info += statesController[statesController.length - 1].text;
-      info += " }";
+      info += "q0 = ${statesController[0].text} \nF =  ";
+      info +=endText.toString();
+      info += " ";
     }
   }
 

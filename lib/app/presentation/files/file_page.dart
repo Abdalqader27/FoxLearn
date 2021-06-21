@@ -126,6 +126,7 @@ class _FilePageState extends State<FilePage> with TickerProviderStateMixin {
                                       duration: Duration(milliseconds: 1000),
                                       scaleFactor: 1.5,
                                       onPressed: () {
+                                        print("hey");
                                         Get.to(() => FilesScreen(
                                               id: snapshot.data![index].id,
                                             ));
@@ -224,7 +225,6 @@ class CategoryView extends StatelessWidget {
                     ],
                   ),
                 ),
-
               ],
             ),
           ),

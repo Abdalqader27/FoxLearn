@@ -63,7 +63,8 @@ class _FilesScreenState extends State<FilesScreen>
   //         fileName: "fileName",
   //         myFile: MyFile(name: "das", type: "dsadad", url: "dsadasd"),
   //         universityId: 3,
-  //         isActivited: true));
+  //         isActivited: true)
+  //         );
 
   @override
   void initState() {
@@ -121,12 +122,9 @@ class _FilesScreenState extends State<FilesScreen>
                                   (int index) {
                                     final int count = snapshot.data!.length;
                                     final Animation<double> animation =
-                                        Tween<double>(begin: 0.0, end: 1.0)
-                                            .animate(
-                                      CurvedAnimation(
+                                        Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
                                         parent: animationController,
-                                        curve: Interval(
-                                            (1 / count) * index, 1.0,
+                                        curve: Interval((1 / count) * index, 1.0,
                                             curve: Curves.easeInOutQuart),
                                       ),
                                     );
@@ -134,11 +132,7 @@ class _FilesScreenState extends State<FilesScreen>
                                     return BouncingWidget(
                                       duration: Duration(milliseconds: 1000),
                                       scaleFactor: 1.5,
-                                      onPressed: () {
-                                        Get.to(() => PdfScreen(
-                                              file: snapshot.data![index],
-                                            ));
-                                      },
+                                      onPressed: () {Get.to(() => PdfScreen(file: snapshot.data![index]));},
                                       child: CategoryView(
                                         myFiles: snapshot.data![index],
                                         animation: animation,
