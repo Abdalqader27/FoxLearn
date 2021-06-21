@@ -23,7 +23,7 @@ class Service4Implement {
   void selectEndState(BuildContext context, setState) async {
     final items = List<MultiSelectDialogItem<int>>.generate(
         statesController.length,
-            (index) => MultiSelectDialogItem(index, statesController[index].text));
+        (index) => MultiSelectDialogItem(index, statesController[index].text));
     first = (await showDialog<Set<int>>(
       context: context,
       builder: (BuildContext context) {
@@ -37,16 +37,17 @@ class Service4Implement {
     first.forEach((element) {
       endText.add(statesController[element].text);
     });
+    nfaInfo();
     setState(() {});
   }
 
   void selectFirstState(BuildContext context, setState) async {
     final items = List<MultiSelectDialogItem<int>>.generate(
         statesController.length,
-            (index) => MultiSelectDialogItem(
-          index,
-          statesController[index].text,
-        ));
+        (index) => MultiSelectDialogItem(
+              index,
+              statesController[index].text,
+            ));
 
     end = (await showDialog<Set<int>>(
       context: context,
@@ -62,6 +63,8 @@ class Service4Implement {
     end.forEach((element) {
       firstText.add(statesController[element].text);
     });
+    nfaInfo();
+
     setState(() {});
   }
 
@@ -69,7 +72,7 @@ class Service4Implement {
       {required BuildContext context, required int i, required int j}) async {
     final items = List<MultiSelectDialogItem<int>>.generate(
         statesController.length,
-            (index) => MultiSelectDialogItem(index, statesController[index].text));
+        (index) => MultiSelectDialogItem(index, statesController[index].text));
     Set<int> temp = (await showDialog<Set<int>>(
       context: context,
       builder: (BuildContext context) {
@@ -84,9 +87,12 @@ class Service4Implement {
       text.add(statesController[element].text);
     });
     TextEditingController controller = tableController[j][i].item2;
-    controller.text = text.toString();
+    controller.text = text.toSet().toString();
     tableController[j][i] = Tuple2(temp, controller);
+    nfaInfo();
+
     setState(() {});
+
   }
 
   Widget transitFun(context, setState) {
@@ -109,57 +115,66 @@ class Service4Implement {
               child: Container(
                 alignment: Alignment.topCenter,
                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                child: DataTable(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: AppColors.kLightGrey)),
-                  showBottomBorder: false,
-                  columns: [
-                    DataColumn(label: Icon(Mdi.stateMachine)),
-                    for (int i = 0; i < alphabetController.length; ++i)
-                      DataColumn(
-                        label: Text(alphabetController[i].text),
-                      ),
-                  ],
-                  rows: [
-                    for (int j = 0; j < statesController.length; ++j)
-                      DataRow(cells: [
-                        DataCell(Text(statesController[j].text)),
-                        for (int i = 0; i < alphabetController.length; ++i)
-                          DataCell(
-                            TextFormField(
-                              controller: tableController[j][i].item2,
-                              onTap: () {
-                                print("i= " + i.toString());
-                                print("j= " + j.toString());
-                                _setAutomateValues(setState,
-                                    context: context, j: j, i: i);
-                              },
-                              onChanged: (val) {
-                                setState(() {
-                                  print("col=" + i.toString());
-                                  print("row=" + j.toString());
-                                  int ii = i, jj = j;
-                                  inputTable[jj][ii] = val;
-                                  if (val == "") inputTable[jj][ii] = "-";
-                                });
-                              },
-                              decoration: InputDecoration(
-                                labelStyle: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black,
+                child: AbsorbPointer(
+                  absorbing: false,
+                  child: DataTable(
+                    onSelectAll: null,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: AppColors.kLightGrey)),
+                    showBottomBorder: false,
+                    columns: [
+                      DataColumn(label: Icon(Mdi.stateMachine)),
+                      for (int i = 0; i < alphabetController.length; ++i)
+                        DataColumn(
+                          label: Text(alphabetController[i].text),
+                        ),
+                    ],
+                    rows: [
+                      for (int j = 0; j < statesController.length; ++j)
+                        DataRow(
+                          cells: [
+                            DataCell(Text(statesController[j].text)),
+                            for (int i = 0; i < alphabetController.length; ++i)
+                              DataCell(
+                                TextFormField(
+                                  readOnly: true,
+                                  controller: tableController[j][i].item2,
+                                  onTap: () {
+                                    print("i= " + i.toString());
+                                    print("j= " + j.toString());
+                                    _setAutomateValues(setState,
+                                        context: context, j: j, i: i);
+                                  },
+                                  onChanged: (val) {
+                                    setState(() {
+                                      print("col=" + i.toString());
+                                      print("row=" + j.toString());
+                                      int ii = i, jj = j;
+                                      inputTable[jj][ii] = val;
+                                      if (val == "") inputTable[jj][ii] = "-";
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                    labelStyle: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                    ),
+                                    border: UnderlineInputBorder(),
+                                    fillColor: Colors.white,
+                                    filled: false,
+                                  ),
+                                  keyboardType: TextInputType.text,
+                                  obscureText: false,
+                                  maxLines: 1,
                                 ),
-                                border: UnderlineInputBorder(),
-                                fillColor: Colors.white,
-                                filled: false,
                               ),
-                              keyboardType: TextInputType.text,
-                              obscureText: false,
-                              maxLines: 1,
-                            ),
-                          ),
-                      ], selected: false, onSelectChanged: null)
-                  ],
+                          ],
+                          selected: false,
+                          onSelectChanged: null,
+                        )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -185,7 +200,7 @@ class Service4Implement {
                 ),
               ),
               subtitle: Text(
-                'إن الخماسية للأتومات المنتهي اللاحتمي هي ',
+                'إن الخماسية للأتومات المنتهي الحتمي  هي :',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                 ),
@@ -235,8 +250,9 @@ class Service4Implement {
         alphabetsList.add(alphabetController[i].text);
         if (i != alphabetController.length - 1)
           info += ", ";
-        else
+        else {
           info += "}\n";
+        }
       }
 
       info += "q0 = {${statesController[0].text} }\nF = { ";

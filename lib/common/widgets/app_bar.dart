@@ -32,7 +32,7 @@ class AppBarUser extends StatelessWidget {
                   child: Container(
                 child: Container(
                     decoration: BoxDecoration(
-                        color: color ?? AppColors.primaryColor,
+                        color: color ?? AppColors.LIGHT_Red,
                         borderRadius: BorderRadius.circular(15.0.w)),
                     padding: EdgeInsets.all(5.0.sp),
                     child: Center(

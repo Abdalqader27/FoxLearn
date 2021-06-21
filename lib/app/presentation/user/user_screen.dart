@@ -16,7 +16,8 @@ class _UserScreenState extends State<UserScreen>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     animationController.forward();
   }
 
@@ -31,7 +32,18 @@ class _UserScreenState extends State<UserScreen>
         SizedBox(height: 2.0.h),
 
         /// Tab Bar Sections
-        tabBar(context),
+        // tabBar(context),
+
+        // Container(
+        //
+        //   padding: const EdgeInsets.symmetric(horizontal: 15),
+        //   child: ListTile(
+        //     title: Text(
+        //       "الملاحظات",
+        //       style: TextStyle(fontWeight: FontWeight.bold),
+        //     ),
+        //   ),
+        // ),
 
         /// Body of tabBar view
         Expanded(child: tabBarView(animationController))

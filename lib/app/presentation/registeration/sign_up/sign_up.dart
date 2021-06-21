@@ -3,6 +3,7 @@ import 'package:foxlearn/app/controllers/registerations/signUp_controller.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/neu_button.dart';
 import 'package:foxlearn/app/presentation/registeration/widgets/sign_up_section.dart';
 import 'package:foxlearn/common/widgets/app_bar.dart';
+import 'package:foxlearn/common/widgets/custom_flat_button.dart';
 import 'package:foxlearn/generated/assets.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/values/strings.dart';
@@ -18,13 +19,14 @@ class SignUp extends GetView<SignUpController> {
 
     /// Title Section-----------------------------------------
     final appbar =
-        AppBarUser(text: AppString.CreateAccount, color: AppColors.LIGHT_Green);
+        AppBarUser(text: AppString.CreateAccount, color: AppColors.LIGHT_Red);
 
     /// Buttons Section ----------------------------------------------------------------------------
-    final enterButton = NeuFlatButton(
-        onTap: () => {}, text: AppString.CreateAccount);
+    final enterButton = CustomFlatButton(
+        onTap: () => {}, title: AppString.CreateAccount);
 
     return Scaffold(
+      backgroundColor: AppColors.GrayLightColor,
       key: controller.scaffoldKey,
       body: SafeArea(
         child: Form(
@@ -37,6 +39,8 @@ class SignUp extends GetView<SignUpController> {
                         enterButton: enterButton,
                         controller: controller,
                       )),
+
+
                   onLoading: Center(
                       child: Lottie.asset(Assets.lottiLoading,
                           width: 200..w, height: 200..h))),

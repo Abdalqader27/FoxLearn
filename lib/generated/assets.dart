@@ -55,6 +55,7 @@ class Assets {
   static const String svgExamination = 'assets/svg/Examination.svg';
   static const String svgFiMenu = 'assets/svg/fi_menu.svg';
   static const String svgFiles = 'assets/svg/files.svg';
+  static const String svgFolder = 'assets/svg/folder.svg';
   static const String svgFox = 'assets/svg/fox.svg';
   static const String svgFoxGirl = 'assets/svg/Fox_girl.svg';
   static const String svgFoxGroup = 'assets/svg/fox_group.svg';

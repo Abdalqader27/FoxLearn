@@ -68,8 +68,8 @@ class UserScreenImplement {
   Widget tabBarView(animationController) {
     return TabBarView(children: [
       //  SelectedMaterialScreen(animationController: animationController),
+      HomeNotePage(),
       ActivityScreen(),
-      HomeNotePage()
     ]);
   }
 }

@@ -18,7 +18,6 @@ class ServicesScreen extends StatefulWidget {
 var cardAspectRatio = 12.0 / 16.0;
 var widgetAspectRatio = cardAspectRatio * 1.2;
 
-
 List<String> title = [
   " NFA - > DFA",
   " Eps NFA - > DFA",
@@ -30,7 +29,6 @@ List<String> subtitle = [
   "تحويل من اﻷتومات  المنتهي اللاحتمي مع أوبسلن إلى أتومات منتهي حتمي ",
   "رسم اﻷتومات وعرض جدول الأنتقال الخاص به  ",
   "تحويل من اﻷتومات  المنتهي الحتمي  إلى تعبير منتظم  ",
-
 ];
 
 class _ServicesScreenState extends State<ServicesScreen> {
@@ -45,16 +43,31 @@ class _ServicesScreenState extends State<ServicesScreen> {
       });
     });
 
+
+
+
     return Container(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Text("عدد الخدمات : 4  ",style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.WHITE),),
-              SizedBox(height: 10,),
-              SvgPicture.asset(Assets.svgFox,height: 120,),
+              Text(
+                "عدد الخدمات : 4  ",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: AppColors.WHITE),
+              ),
 
+              // ListView.builder(
+              //   child: FilterChip(
+              //     pressElevation: 10,
+              //     selected: false,
+              //     disabledColor: AppColors.LIGHT_Red,
+              //
+              //     label: const Text('Aaron Burr'),
+              //     onSelected: (bool value) {},
+              //   ),
+              // ),
               Directionality(
                 textDirection: TextDirection.ltr,
                 child: Stack(
@@ -73,7 +86,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -136,7 +148,11 @@ class CardScrollWidget extends StatelessWidget {
                     children: <Widget>[
                       Opacity(
                           opacity: .2,
-                          child: Image.asset( "assets/png/main_bottom.png", fit: BoxFit.cover,color: AppColors.grey,)),
+                          child: Image.asset(
+                            "assets/png/main_bottom.png",
+                            fit: BoxFit.cover,
+                            color: AppColors.grey,
+                          )),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: SingleChildScrollView(
@@ -146,7 +162,10 @@ class CardScrollWidget extends StatelessWidget {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(Assets.svgLock,width: 20.0.w,),
+                                child: SvgPicture.asset(
+                                  Assets.svgLock,
+                                  width: 20.0.w,
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
@@ -154,21 +173,18 @@ class CardScrollWidget extends StatelessWidget {
                                 child: ListTile(
                                   title: Text(title[i],
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20
-
-                                      )),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
                                   subtitle: Card(
                                     elevation: 0,
                                     shape: AppStyles.cardStyle4,
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text( subtitle[i]),
+                                      child: Text(subtitle[i]),
                                     ),
                                   ),
                                 ),
                               ),
-
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 50, vertical: 30),
@@ -183,7 +199,8 @@ class CardScrollWidget extends StatelessWidget {
                                     child: Center(
                                       child: TextButton(
                                         style: TextButton.styleFrom(
-                                          backgroundColor: AppColors.LIGHT_Red,
+                                            backgroundColor:
+                                                AppColors.LIGHT_Red,
                                             shape: BeveledRectangleBorder(
                                                 borderRadius: BorderRadius.only(
                                                     topRight:

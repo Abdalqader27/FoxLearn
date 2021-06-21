@@ -1,25 +1,20 @@
 import 'package:bouncing_widget/bouncing_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:foxlearn/app/infrastructure/models/my_files.dart';
 import 'package:foxlearn/app/presentation/files/files_api.dart';
-import 'package:foxlearn/app/presentation/files/files_model.dart';
-import 'package:foxlearn/app/presentation/files/pdf_screen.dart';
+import 'package:foxlearn/app/presentation/files/files_screen.dart';
+import 'package:foxlearn/app/presentation/tests/subject_model.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
 import 'package:foxlearn/common/widgets/title_text.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
-import 'package:foxlearn/resources/theme/theme.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:get/get.dart';
 
-class FilesScreen extends StatefulWidget {
-  final int id;
-
-  const FilesScreen({Key? key, required this.id}) : super(key: key);
+class FilePage extends StatefulWidget {
+  const FilePage({Key? key}) : super(key: key);
 
   @override
-  _FilesScreenState createState() => _FilesScreenState();
+  _FilePageState createState() => _FilePageState();
 }
 
 Widget _title(future) {
@@ -35,7 +30,7 @@ Widget _title(future) {
             children: <Widget>[
               TitleText(
                 text: snapshot.data != null
-                    ? 'لديك ${snapshot.data!.length} ملفات  متوفرة '
+                    ? 'لديك ${snapshot.data!.length} مواد  متوفرة '
                     : "الرجاء الإنتظار",
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
@@ -47,10 +42,9 @@ Widget _title(future) {
       });
 }
 
-class _FilesScreenState extends State<FilesScreen>
-    with TickerProviderStateMixin {
+class _FilePageState extends State<FilePage> with TickerProviderStateMixin {
   late AnimationController animationController;
-  late Future<List<FilesModel>> future;
+  late Future<List<SubjectsModel>> future;
   RxString count = "".obs;
 
   // List<MyFiles> list = List<MyFiles>.generate(
@@ -67,7 +61,7 @@ class _FilesScreenState extends State<FilesScreen>
 
   @override
   void initState() {
-    future = FilesApi().getAllFiles(widget.id);
+    future = FilesApi().getSubjects();
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
@@ -75,9 +69,7 @@ class _FilesScreenState extends State<FilesScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.LIGHT_Red,
-        body: getPopularCourseUI());
+    return getPopularCourseUI();
   }
 
   Widget getPopularCourseUI() {
@@ -98,7 +90,7 @@ class _FilesScreenState extends State<FilesScreen>
             shape: AppStyles.cardStyle3,
             child: Container(
               padding: const EdgeInsets.only(top: 8.0, left: 6, right: 6),
-              child: FutureBuilder<List<FilesModel>>(
+              child: FutureBuilder<List<SubjectsModel>>(
                   future: future,
                   builder: (context, snapshot) {
                     if (snapshot.data == null) return LottieLoading();
@@ -109,8 +101,7 @@ class _FilesScreenState extends State<FilesScreen>
                         physics: BouncingScrollPhysics(),
                         children: <Widget>[
                           Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
+                              padding: const EdgeInsets.only(left: 5, right: 5),
                               child: GridView(
                                 shrinkWrap: true,
                                 padding: const EdgeInsets.all(8),
@@ -135,12 +126,12 @@ class _FilesScreenState extends State<FilesScreen>
                                       duration: Duration(milliseconds: 1000),
                                       scaleFactor: 1.5,
                                       onPressed: () {
-                                        Get.to(() => PdfScreen(
-                                              file: snapshot.data![index],
+                                        Get.to(() => FilesScreen(
+                                              id: snapshot.data![index].id,
                                             ));
                                       },
                                       child: CategoryView(
-                                        myFiles: snapshot.data![index],
+                                        subject: snapshot.data![index],
                                         animation: animation,
                                         animationController:
                                             animationController,
@@ -151,7 +142,7 @@ class _FilesScreenState extends State<FilesScreen>
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        mainAxisSpacing: 0.0,
+                                        mainAxisSpacing: 10.0,
                                         crossAxisSpacing: 0.0,
                                         childAspectRatio: 1.2),
                               )),
@@ -170,9 +161,9 @@ class CategoryView extends StatelessWidget {
       {Key? key,
       required this.animationController,
       required this.animation,
-      required this.myFiles})
+      required this.subject})
       : super(key: key);
-  final FilesModel myFiles;
+  final SubjectsModel subject;
   final AnimationController animationController;
   final Animation<double> animation;
 
@@ -189,7 +180,7 @@ class CategoryView extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 TitleText(
-                  text: '${myFiles.fileName} ',
+                  text: '${subject.name} ',
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -213,14 +204,14 @@ class CategoryView extends StatelessWidget {
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(16.0)),
                                 child: AspectRatio(
-                                    aspectRatio: 1.4,
+                                    aspectRatio: 1.5,
                                     child: Column(
                                       children: <Widget>[
                                         Expanded(
                                           child: Padding(
-                                            padding: const EdgeInsets.all(0.0),
+                                            padding: const EdgeInsets.all(20.0),
                                             child: SvgPicture.asset(
-                                                "assets/svg/pdf2.svg"),
+                                                "assets/svg/folder.svg"),
                                           ),
                                         ),
                                       ],
@@ -233,6 +224,7 @@ class CategoryView extends StatelessWidget {
                     ],
                   ),
                 ),
+
               ],
             ),
           ),

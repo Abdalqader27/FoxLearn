@@ -6,6 +6,7 @@ import 'package:foxlearn/app/presentation/tests/subject_model.dart';
 import 'package:foxlearn/app/presentation/tests/test_api.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
+import 'package:foxlearn/resources/theme/text_styles.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +31,7 @@ class _SubjectScreenState extends State<SubjectScreen>
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        margin: EdgeInsets.only(top: 5.0.h, right: 5.0.w, left: 5.0.w),
+        margin: EdgeInsets.only(top: 7.0.h, right: 5.0.w, left: 5.0.w),
         child: FutureBuilder<List<SubjectsModel>>(
             future: TestsApi().getSubjects(),
             builder: (context, snapshot) {
@@ -56,8 +57,11 @@ class _SubjectScreenState extends State<SubjectScreen>
                       shape: AppStyles.cardStyle4,
                       child: ListTile(
                         trailing: Icon(Icons.arrow_forward_ios),
-                        title: Text(current.name),
-                        subtitle: Text(current.description),
+                        title: Text(
+                          current.name,
+                          style: AppTextStyles.title().copyWith(fontSize: 15),
+                        ),
+                        // subtitle: Text(current.description),
                       ),
                     ),
                   );

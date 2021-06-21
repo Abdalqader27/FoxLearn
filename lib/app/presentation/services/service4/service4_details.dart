@@ -48,32 +48,21 @@ class _Service4DetailsState extends State<Service4Details> {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      Card(
-                        color: AppColors.kLightGrey.withOpacity(.4),
-                        elevation: 0,
-                        shape: AppStyles.cardStyle4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListTile(
-                            title: Text(
-                              "النتيجة ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 30),
-                            ),
-                            subtitle: Column(
-                              children: [
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text("يمكنك  يتم REG To DFA"),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Card(
+                      //   color: AppColors.kLightGrey.withOpacity(.4),
+                      //   elevation: 0,
+                      //   shape: AppStyles.cardStyle4,
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: ListTile(
+                      //       title: Text(
+                      //         "النتيجة ",
+                      //         style: TextStyle(
+                      //             fontWeight: FontWeight.w600, fontSize: 30),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Expanded(
                         child: PageView(
                           children: [
@@ -105,12 +94,28 @@ class _Service4DetailsState extends State<Service4Details> {
                                             child: Text(snapshot.data!.result,
                                                 style: TextStyle(
                                                     letterSpacing: 1,
-                                                    fontWeight: FontWeight.w600)),
+                                                    fontWeight:
+                                                        FontWeight.w600)),
                                           )),
                                     ),
                                   )),
                             ),
-
+                          ],
+                        ),
+                      ),
+                      Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.arrow_back_ios),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("اسحب لعرض النتائج "),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.arrow_forward_ios),
                           ],
                         ),
                       )

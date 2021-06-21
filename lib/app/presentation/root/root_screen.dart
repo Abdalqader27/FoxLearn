@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foxlearn/app/controllers/root_controller.dart';
+import 'package:foxlearn/app/presentation/files/file_page.dart';
 import 'package:foxlearn/app/presentation/files/files_screen.dart';
 import 'package:foxlearn/app/presentation/home/home_screen.dart';
 import 'package:foxlearn/app/presentation/point_of_sale_loc/point_sale_screen.dart';
@@ -65,7 +66,7 @@ class RootScreen extends GetView<RootController> {
                       controller: controller.pageController,
                       children: [
                         HomeScreen(),
-                        FilesScreen(),
+                        FilePage(),
                         ServicesScreen(),
                         SubjectScreen(),
                         // StatisticsScreen(),

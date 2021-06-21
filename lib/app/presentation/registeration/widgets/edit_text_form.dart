@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/theme/text_styles.dart';
+import 'package:foxlearn/resources/values/styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditTextForm extends StatelessWidget {
@@ -50,8 +51,9 @@ class EditTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
+    return Card(
+      elevation: 0,
+        shape: AppStyles.cardStyle4,
         child: Theme(
           data: Theme.of(context)
               .copyWith(primaryColor: iconColor ?? AppColors.secondaryColor),

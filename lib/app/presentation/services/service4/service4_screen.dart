@@ -27,7 +27,6 @@ class _Service4ScreenState extends State<Service4Screen>
           child: ListView(
             padding: EdgeInsets.all(20),
             children: [
-  
               Card(
                 color: AppColors.WHITE.withOpacity(.8),
                 elevation: 0,
@@ -36,11 +35,11 @@ class _Service4ScreenState extends State<Service4Screen>
                   padding: const EdgeInsets.all(8.0),
                   child: ListTile(
                     title: Text(
-                      "من REG To DFA",
+                      "من DFA إلى  RegEx ",
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
-                    subtitle:
-                        Text("للتحويل من اﻷتومات اللاحتمي إلى أتومات حتمي "),
+                    subtitle: Text(
+                        "للتحويل من اﻷتومات المنتهي  الحتمي إلى تعبير منتظم  "),
                   ),
                 ),
               ),
@@ -48,7 +47,10 @@ class _Service4ScreenState extends State<Service4Screen>
                 onTap1: () {
                   statesController.add(TextEditingController());
                   filedStates.add(TextField(
+                    textAlign: TextAlign.center,
+                    textAlignVertical: TextAlignVertical.center,
                     onChanged: (data) {
+                      nfaInfo();
                       setState(() {});
                     },
                     controller: statesController[statesController.length - 1],
@@ -59,7 +61,10 @@ class _Service4ScreenState extends State<Service4Screen>
                   setState(() {
                     alphabetController.add(TextEditingController());
                     fieldAlphabet.add(TextField(
+                      textAlign: TextAlign.center,
                       onChanged: (data) {
+                        nfaInfo();
+
                         setState(() {});
                       },
                       controller:
@@ -69,7 +74,7 @@ class _Service4ScreenState extends State<Service4Screen>
                   });
                 },
                 title1: "الحالات",
-                title2: "الابجدية",
+                title2: "الأبجدية",
                 children1: filedStates,
                 children2: fieldAlphabet,
               ),
@@ -99,7 +104,7 @@ class _Service4ScreenState extends State<Service4Screen>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "q0 =$firstText ",
+                                "q0 =${firstText.toString().replaceAll("{", "").replaceAll("}", "")} ",
                                 style: TextStyle(
                                     fontSize: 11.0.sp, letterSpacing: 1.2),
                               ),
@@ -139,49 +144,64 @@ class _Service4ScreenState extends State<Service4Screen>
                   ),
                 ],
               ),
-              theQuintuple(),
+              Visibility(
+                  visible: statesController.isNotEmpty &&
+                      alphabetController.isNotEmpty &&
+                      firstText.isNotEmpty &&
+                      endText.isNotEmpty,
+                  child: theQuintuple()),
               RoundedButton(
                 onTap: () {
-                  AutomateInput automate = AutomateInput(
-                      segma: [], q: [], start: '', delta: [], end: []);
+                  if (statesController.isNotEmpty &&
+                      alphabetController.isNotEmpty &&
+                      firstText.isNotEmpty &&
+                      endText.isNotEmpty) {
+                    AutomateInput automate = AutomateInput(
+                        segma: [], q: [], start: '', delta: [], end: []);
 
-                  for (int i = 0; i < statesController.length; ++i)
-                    automate.q.add(statesController[i].text.toString());
-                  Logs.logger.i("q= " + automate.q.toString());
-
-// ------------------------------------------------------------------------------------------------------------
-                  for (int i = 0; i < alphabetController.length; ++i)
-                    automate.segma.add(alphabetController[i].text.toString());
-                  Logs.logger.i("segma= " + automate.segma.toString());
-// ------------------------------------------------------------------------------------------------------------
-
-                  automate.start = firstText.first.toString();
-                  Logs.logger.i("start= " + automate.start.toString());
+                    for (int i = 0; i < statesController.length; ++i)
+                      automate.q.add(statesController[i].text.toString());
+                    Logs.logger.i("q= " + automate.q.toString());
 
 // ------------------------------------------------------------------------------------------------------------
-                  endText.forEach((element) {
-                    automate.end.add(element);
-                  });
-                  Logs.logger.i("end= " + automate.end.toString());
+                    for (int i = 0; i < alphabetController.length; ++i)
+                      automate.segma.add(alphabetController[i].text.toString());
+                    Logs.logger.i("segma= " + automate.segma.toString());
+// ------------------------------------------------------------------------------------------------------------
 
-                  List<List<int>> rows = [];
-                  for (int i = 0; i < statesController.length; ++i) {
-                    rows.add([]);
-                    for (int j = 0; j < alphabetController.length; ++j) {
-                      Set<int> data = tableController[i][j].item1;
-                      rows[i].add(data.first + 1);
+                    automate.start = firstText.first.toString();
+                    Logs.logger.i("start= " + automate.start.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                    endText.forEach((element) {
+                      automate.end.add(element);
+                    });
+                    Logs.logger.i("end= " + automate.end.toString());
+
+                    List<List<int>> rows = [];
+                    for (int i = 0; i < statesController.length; ++i) {
+                      rows.add([]);
+                      for (int j = 0; j < alphabetController.length; ++j) {
+                        Set<int> data = tableController[i][j].item1;
+                        rows[i].add(data.first + 1);
+                      }
                     }
-                  }
-                  automate.delta = rows;
-                  Logs.logger.i("delta= " + rows.toString());
+                    automate.delta = rows;
+                    Logs.logger.i("delta= " + rows.toString());
 
-                  Get.to(() => Service4Details(
-                        automate: automate,
-                      ));
+                    Get.to(() => Service4Details(
+                          automate: automate,
+                        ));
+                  } else {
+                    Get.snackbar("تنبيه !!!", "يرجى التحقق من المدخلات ",
+                        backgroundColor: AppColors.LIGHT_Red,
+                        margin: EdgeInsets.all(10),
+                        snackPosition: SnackPosition.BOTTOM);
+                  }
                 },
                 color: AppColors.LIGHT_Red,
                 myChild: Text(
-                  "تحويل الاتومات إلى حتمي  ",
+                  "تحويل الأتومات إلى تعبير منتظم   ",
                   style: TextStyle(
                       color: AppColors.WHITE, fontWeight: FontWeight.bold),
                 ),

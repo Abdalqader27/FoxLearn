@@ -25,7 +25,7 @@ class NeuFlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: AppStyles.cardStyle1,
+      shape: AppStyles.cardStyle4,
       clipBehavior: Clip.antiAlias,
       child: Container(
         color: color,
