@@ -13,7 +13,7 @@ List<Widget> getEditTexts(context, controller, iconPassword, onEye, see) {
       if (text == null || text.isEmpty) return AppString.FillName;
       return null;
     },
-    controller: controller.nameController,
+    controller: controller.userNameController,
     title: AppString.Name,
     svgPath: Assets.svgUsers,
     keyboardType: TextInputType.name,
@@ -23,7 +23,7 @@ List<Widget> getEditTexts(context, controller, iconPassword, onEye, see) {
   );
 
   final lasNameEditText = EditTextForm(
-    controller: controller.lastNameController,
+    controller: controller.nameController,
     title: AppString.LastName,
     svgPath: Assets.svgUsers,
     keyboardType: TextInputType.name,

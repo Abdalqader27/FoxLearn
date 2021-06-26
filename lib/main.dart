@@ -55,7 +55,7 @@ void main() async {
 
 Future<void> _initMoorInspector(AppDatabase appDatabase) async {
   final moorInspectorBuilder = MoorInspectorBuilder()
-    ..bundleId = 'com.elkood.get_up'
+    ..bundleId = 'com.abdalqader27.foxlearn'
     ..icon = 'flutter'
     ..addDatabase('AppDatabase', appDatabase);
   final inspector = moorInspectorBuilder.build();

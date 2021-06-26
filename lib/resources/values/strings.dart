@@ -58,7 +58,7 @@ class AppString {
   static const String SignToUP = "قم  بإنشاء حسابك ";
   static const String CreateAccount = "إنشاء حسابك ";
   static const String Phone = "رقم الهاتف  ";
-  static const String Name = "اسم الطالب ";
+  static const String Name = "اسم الحساب ";
   static const String Birthday = "تاريخ الميلاد";
   static const String Email = "ايميل ";
   static const String Password = "كلمة السر ";

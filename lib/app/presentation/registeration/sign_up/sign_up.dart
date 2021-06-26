@@ -22,8 +22,6 @@ class SignUp extends GetView<SignUpController> {
         AppBarUser(text: AppString.CreateAccount, color: AppColors.LIGHT_Red);
 
     /// Buttons Section ----------------------------------------------------------------------------
-    final enterButton = CustomFlatButton(
-        onTap: () => {}, title: AppString.CreateAccount);
 
     return Scaffold(
       backgroundColor: AppColors.GrayLightColor,
@@ -34,16 +32,18 @@ class SignUp extends GetView<SignUpController> {
           child: Column(
             children: [
               appbar,
-              controller.obx(
-                  ((state) => SignUpSection(
-                        enterButton: enterButton,
-                        controller: controller,
-                      )),
-
-
-                  onLoading: Center(
-                      child: Lottie.asset(Assets.lottiLoading,
-                          width: 200..w, height: 200..h))),
+              Expanded(
+                child: controller.obx(
+                    ((state) => SignUpSection(
+                          enterButton: CustomFlatButton(
+                              onTap: controller.onClickOk,
+                              title: AppString.CreateAccount),
+                          controller: controller,
+                        )),
+                    onLoading: Center(
+                        child: Lottie.asset(Assets.lottiLoading,
+                            width: 200..w, height: 200..h))),
+              ),
             ],
           ),
         ),

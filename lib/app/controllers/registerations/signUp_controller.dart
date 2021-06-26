@@ -13,13 +13,14 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+
 class SignUpController extends GetxController with StateMixin<bool> {
   /// In this controller the  is injection two params
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final TextEditingController userNameController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController birthdayController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -38,55 +39,50 @@ class SignUpController extends GetxController with StateMixin<bool> {
     change(true, status: RxStatus.success());
   }
 
-  // onClickOk() {
-  //   if (formKey.currentState!.validate()) {
-  //     change(false, status: RxStatus.loading());
-  //     UserAccount user = UserAccount(
-  //         id: 0,
-  //         dob: DateFormat("yyyy-MM-dd")
-  //             .parse(birthdayController.text.toString()),
-  //         email: emailController.text,
-  //         lastName: lastNameController.text,
-  //         firstName: nameController.text,
-  //         deviceToken: firebaseToken,
-  //         //  username: _controllers.nameController.text+"  "+_controllers.lastNameController.text,
-  //         password: passwordController.text,
-  //         phoneNumber: phoneController.text, userName: null);
-  //     print(user.toJson());
-  //
-  //     ApiRepository.apiUser.signUp(user).then((value) {
-  //       value.when(
-  //         success: (data) {
-  //           GetStorage().write(AppKeys.LOGIN_FLAG_KEY, true);
-  //           user.id = data.id;
-  //           user.token = data.token;
-  //           user.s3Credentials = data.s3Credentials;
-  //           GetStorage()
-  //               .write(AppKeys.USER_FLAG_KEY, json.encode(user.toJson()));
-  //           change(true, status: RxStatus.success());
-  //           Get.back();
-  //           Get.find<AppController>().login();
-  //           Get.snackbar("مرحبا", "تم تسجيل الدخول",
-  //               snackPosition: SnackPosition.BOTTOM,
-  //               margin: EdgeInsets.all(10),
-  //               backgroundColor: AppColors.LIGHT_Green);
-  //         },
-  //         failure: (error) {
-  //           print("my error " + error.toString());
-  //           // Get.snackbar("فشل ", NetworkExceptions.getErrorMessage(()),
-  //           //     snackPosition: SnackPosition.BOTTOM,
-  //           //     margin: EdgeInsets.all(10),
-  //           //     backgroundColor: AppColors.LIGHT_Red);
-  //           change(false, status: RxStatus.success());
-  //         },
-  //       );
-  //     }, onError: (error) {
-  //       Get.snackbar("مرحبا", "حدث خطأ ما ",
-  //           snackPosition: SnackPosition.BOTTOM,
-  //           margin: EdgeInsets.all(10),
-  //           backgroundColor: AppColors.LIGHT_Red);
-  //       change(false, status: RxStatus.success());
-  //     });
-  //   }
-  // }
+  onClickOk() {
+    if (formKey.currentState!.validate()) {
+      change(false, status: RxStatus.loading());
+      UserAccount user = UserAccount(
+        id: 0,
+        dob: DateFormat("yyyy-MM-dd").parse(birthdayController.text.toString()),
+        email: emailController.text,
+        deviceToken: firebaseToken,
+        password: passwordController.text,
+        phone: phoneController.text,
+        userName: userNameController.text ,
+        token: '',
+        name:  nameController.text,
+      );
+      print(user.toJson());
+
+      ApiRepository.apiUser.signUp(user).then((value) {
+        value.when(
+          success: (data) {
+            GetStorage().write(AppKeys.LOGIN_FLAG_KEY, true);
+            user.id = data.id;
+            user.token = data.token;
+            GetStorage()
+                .write(AppKeys.USER_FLAG_KEY, json.encode(user.toJson()));
+            change(true, status: RxStatus.success());
+            Get.back();
+            Get.find<AppController>().login();
+            Get.snackbar("مرحبا", "تم تسجيل الدخول",
+                snackPosition: SnackPosition.BOTTOM,
+                margin: EdgeInsets.all(10),
+                backgroundColor: AppColors.LIGHT_Green);
+          },
+          failure: (error) {
+            print("my error " + error.toString());
+            change(false, status: RxStatus.success());
+          },
+        );
+      }, onError: (error) {
+        Get.snackbar("مرحبا", "حدث خطأ ما ",
+            snackPosition: SnackPosition.BOTTOM,
+            margin: EdgeInsets.all(10),
+            backgroundColor: AppColors.LIGHT_Red);
+        change(false, status: RxStatus.success());
+      });
+    }
+  }
 }

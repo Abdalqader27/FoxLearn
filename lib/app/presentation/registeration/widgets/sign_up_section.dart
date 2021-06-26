@@ -49,31 +49,19 @@ class _SignUpSectionState extends State<SignUpSection> {
   Widget build(BuildContext context) {
     List<Widget> items = getEditTexts(context, widget.controller, iconPassword, onEye, see);
 
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: ListView.separated(
-              physics: BouncingScrollPhysics(),
-              itemCount: items.length + 1,
-              padding: EdgeInsets.symmetric(horizontal: 5.0.w, vertical: 5.0.w),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return index < items.length
-                    ? items[index]
-                    : Center(
-                        child: widget.enterButton,
-                      );
-              },
-              separatorBuilder: (context, index) => SizedBox(height: 3.0.h),
-            ),
-          ),
-          SizedBox(
-            height: 5.0.h,
-          )
-        ],
-      ),
+    return ListView.separated(
+      physics: BouncingScrollPhysics(),
+      itemCount: items.length + 1,
+      padding: EdgeInsets.symmetric(horizontal: 5.0.w, vertical: 5.0.w),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return index < items.length
+            ? items[index]
+            : Center(
+                child: widget.enterButton,
+              );
+      },
+      separatorBuilder: (context, index) => SizedBox(height: 3.0.h),
     );
   }
 }

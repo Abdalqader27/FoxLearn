@@ -978,7 +978,7 @@ class _CupertinoDatePickerDateState extends State<FlutterRoundedCupertinoDatePic
           SimpleButton(
             text: "تم",
             onTap: () => Get.back(),
-            color: AppColors.secondaryColor,
+            color: AppColors.LIGHT_Red,
           ),
           Expanded(
             child: MediaQuery(

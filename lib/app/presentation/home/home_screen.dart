@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foxlearn/app/controllers/app_controller/app_controller.dart';
 import 'package:foxlearn/app/presentation/home/widget/courses_banks/tab_bar_view.dart';
 import 'package:foxlearn/app/presentation/services/service1/service1_screen.dart';
 import 'package:foxlearn/app/presentation/services/service3/service3_screen.dart';
@@ -11,8 +12,10 @@ import 'package:foxlearn/app/presentation/services/services2/service2_screen.dar
 import 'package:foxlearn/generated/assets.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/theme/text_styles.dart';
+import 'package:foxlearn/resources/values/keys.dart';
 import 'package:foxlearn/resources/values/styles.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'home_implement.dart';
 
@@ -30,12 +33,16 @@ class HomeScreen extends StatelessWidget with HomeImplements {
       },
       child: Column(
         children: [
-
+          TextButton(
+              onPressed: () async {
+                Get.find<AppController>().logout();
+              },
+              child: Text("تسجيل الخروج ")),
           Card(
             elevation: 0,
             child: ListTile(
-              onTap: (){
-                Get.to(()=>ServicesOneScreen());
+              onTap: () {
+                Get.to(() => ServicesOneScreen());
               },
               title: Text("الخدمة الاولى"),
             ),
@@ -43,16 +50,17 @@ class HomeScreen extends StatelessWidget with HomeImplements {
           Card(
             elevation: 0,
             child: ListTile(
-              onTap: (){
-                Get.to(()=>Service2Screen());
+              onTap: () {
+                Get.to(() => Service2Screen());
               },
               title: Text("الخدمة الثانية"),
             ),
-          ),       Card(
+          ),
+          Card(
             elevation: 0,
             child: ListTile(
-              onTap: (){
-                Get.to(()=>Service3Screen());
+              onTap: () {
+                Get.to(() => Service3Screen());
               },
               title: Text("الخدمة الثالثة"),
             ),
@@ -60,12 +68,13 @@ class HomeScreen extends StatelessWidget with HomeImplements {
           Card(
             elevation: 0,
             child: ListTile(
-              onTap: (){
-                Get.to(()=>Service4Screen());
+              onTap: () {
+                Get.to(() => Service4Screen());
               },
               title: Text("الخدمة الرابعة"),
             ),
           ),
+
           /// tab bar between the repeater (courses ) and banks -----------------------
           SvgPicture.asset(Assets.svgFox),
           SvgPicture.asset(Assets.svgFoxlearn),
@@ -91,17 +100,16 @@ class HomeScreen extends StatelessWidget with HomeImplements {
                             title: Text(
                               "لماذا FoxLearn ؟؟",
                               style: AppTextStyles.medium(
-                                  fontWeight: FontWeight.bold).copyWith(fontSize: 20
-                              ),
+                                      fontWeight: FontWeight.bold)
+                                  .copyWith(fontSize: 20),
                             ),
                             subtitle: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                  "فوكس ليرن ممتع وفعال. تساعدك دروس المحاكاة والشخصيات الممتعة على بناء مهارات قوية وفهم التمارين والمسائل بسرعة وسلاسة .",
+                                "فوكس ليرن ممتع وفعال. تساعدك دروس المحاكاة والشخصيات الممتعة على بناء مهارات قوية وفهم التمارين والمسائل بسرعة وسلاسة .",
                                 softWrap: true,
                                 textAlign: TextAlign.justify,
                               ),
-
                             ),
                           ),
                           radius: Radius.circular(15),
@@ -109,15 +117,15 @@ class HomeScreen extends StatelessWidget with HomeImplements {
                           borderType: BorderType.RRect,
                           color: AppColors.LIGHT_Red,
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         DottedBorder(
                           child: ListTile(
-
                             subtitle: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-
-                                  " لقد تم تصميمه من قبل  خبراء من أساتذة ومبرمجين، و لديه منهجية تدريس  قائمة على العلم ثبت أنها تعزز الاحتفاظ بالمعلومة  على المدى الطويل..",
+                                " لقد تم تصميمه من قبل  خبراء من أساتذة ومبرمجين، و لديه منهجية تدريس  قائمة على العلم ثبت أنها تعزز الاحتفاظ بالمعلومة  على المدى الطويل..",
                                 softWrap: true,
                                 textAlign: TextAlign.justify,
                               ),
