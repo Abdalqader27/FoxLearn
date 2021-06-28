@@ -3,8 +3,13 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foxlearn/app/presentation/active_code_screen/active_code_screen.dart';
+import 'package:foxlearn/app/presentation/services/service1/service1_screen.dart';
+import 'package:foxlearn/app/presentation/services/service3/service3_screen.dart';
+import 'package:foxlearn/app/presentation/services/service4/service4_screen.dart';
 import 'package:foxlearn/app/presentation/services/service_controller.dart';
 import 'package:foxlearn/app/presentation/services/service_model.dart';
+import 'package:foxlearn/app/presentation/services/services2/service2_screen.dart';
 import 'package:foxlearn/app/presentation/services/services_screen.dart';
 import 'package:foxlearn/app/presentation/widgets/empty.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
@@ -58,7 +63,21 @@ class ServiceDetails extends GetView<ServiceController> {
                             controller: controller.controller,
                             reverse: true,
                             itemBuilder: (context, index) {
-                              return Container();
+                              return InkWell(
+                                child: Container(),
+                                onTap: () {
+                                  if (!state[index].isActivated) {
+                                    Get.to(() => ActiveCodeScreen());
+                                  } else {
+                                    if (index == 0) {
+                                      Get.to(() => ServicesOneScreen());
+                                    } else if (index == 1)
+                                      Get.to(() => Service3Screen());
+                                    else if (index == 2)
+                                      Get.to(() => Service4Screen());
+                                  }
+                                },
+                              );
                             },
                           ),
                         )
@@ -70,7 +89,9 @@ class ServiceDetails extends GetView<ServiceController> {
             ],
           ),
           onLoading: LottieLoading(),
-          onEmpty: EmptyWidget(text: "لايوجد عناصر",),
+          onEmpty: EmptyWidget(
+            text: "لايوجد عناصر",
+          ),
         ),
       )),
     );
@@ -119,92 +140,110 @@ class CardScrollWidget extends StatelessWidget {
             bottom: padding + verticalInset * max(-delta, 0.0),
             start: start,
             textDirection: TextDirection.rtl,
-            child: Card(
-              elevation: 4.7,
-              clipBehavior: Clip.antiAlias,
-              shape: AppStyles.cardStyle3,
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: AspectRatio(
-                  aspectRatio: cardAspectRatio,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      Opacity(
-                          opacity: .2,
-                          child: Image.asset(
-                            "assets/png/main_bottom.png",
-                            fit: BoxFit.cover,
-                            color: AppColors.grey,
-                          )),
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(
-                                  Assets.svgLock,
-                                  width: 20.0.w,
+            child: InkWell(
+              onTap: () {
+                print("clickHere");
+                print(!data[i].isActivated);
+                if (!data[i].isActivated) {
+                  Get.to(() => ActiveCodeScreen());
+                } else {}
+              },
+              child: Card(
+                elevation: 4.7,
+                clipBehavior: Clip.antiAlias,
+                shape: AppStyles.cardStyle3,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: AspectRatio(
+                    aspectRatio: cardAspectRatio,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        Opacity(
+                            opacity: .2,
+                            child: Image.asset(
+                              "assets/png/main_bottom.png",
+                              fit: BoxFit.cover,
+                              color: AppColors.grey,
+                            )),
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: data[i].isActivated
+                                      ? SvgPicture.asset(
+                                          Assets.svgFox,
+                                          width: 30.0.w,
+                                        )
+                                      : SvgPicture.asset(
+                                          Assets.svgLock,
+                                          width: 20.0.w,
+                                        ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 8.0),
-                                child: ListTile(
-                                  title: Text("${data[i].title}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20)),
-                                  subtitle: Card(
-                                    elevation: 0,
-                                    shape: AppStyles.cardStyle4,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "${data[i].description})",
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 50, vertical: 30),
-                                child: Container(
-                                  width: 40,
-                                  height: 40,
+                                Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 5.0, vertical: 0.0),
-                                  //child: Text("Read Later",
-                                  // style: TextStyle(color: Colors.white)),
-                                  child: Container(
-                                    child: Center(
-                                      child: TextButton(
-                                        style: TextButton.styleFrom(
-                                            backgroundColor:
-                                                AppColors.LIGHT_Red,
-                                            shape: BeveledRectangleBorder(
-                                                borderRadius: BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(7)))),
-                                        child: Text('بدأ الان',
-                                            style:
-                                                TextStyle(color: Colors.white)),
-                                        onPressed: () {},
+                                      horizontal: 16.0, vertical: 8.0),
+                                  child: ListTile(
+                                    title: Text("${data[i].title}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20)),
+                                    subtitle: Card(
+                                      elevation: 0,
+                                      shape: AppStyles.cardStyle4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "${data[i].description})",
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 50, vertical: 30),
+                                  child: Container(
+                                    width: 40,
+                                    height: 40,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 5.0, vertical: 0.0),
+                                    //child: Text("Read Later",
+                                    // style: TextStyle(color: Colors.white)),
+                                    child: Container(
+                                      child: Center(
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                              backgroundColor:
+                                                  AppColors.LIGHT_Red,
+                                              shape: BeveledRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  7)))),
+                                          child: Text('بدأ الان',
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          onPressed: () {
+                                            print("dasdas");
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

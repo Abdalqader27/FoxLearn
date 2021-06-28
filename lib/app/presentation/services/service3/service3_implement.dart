@@ -36,6 +36,8 @@ class Service3Implement {
     first.forEach((element) {
       endText.add(statesController[element].text);
     });
+    nfaInfo();
+
     setState(() {});
   }
 
@@ -61,6 +63,8 @@ class Service3Implement {
     end.forEach((element) {
       firstText.add(statesController[element].text);
     });
+    nfaInfo();
+
     setState(() {});
   }
 
@@ -82,8 +86,10 @@ class Service3Implement {
       text.add(statesController[element].text);
     });
     TextEditingController controller = tableController[j][i].item2;
-    controller.text = text.toString();
+    controller.text = text.toString().replaceAll("]", "").replaceAll("[", "");
     tableController[j][i] = Tuple2(temp, controller);
+    nfaInfo();
+
     setState(() {});
   }
 
@@ -142,6 +148,7 @@ class Service3Implement {
                                 DataCell(
                                   TextFormField(
                                     controller: tableController[j][i].item2,
+                                    readOnly: true,
                                     onTap: () {
                                       print("i= " + i.toString());
                                       print("j= " + j.toString());
@@ -251,13 +258,14 @@ class Service3Implement {
         alphabetsList.add(alphabetController[i].text);
         if (i != alphabetController.length - 1)
           info += ", ";
-        else
+        else {
           info += "}\n";
+        }
       }
 
-      info += "q0 = {${statesController[0].text} }\nF = { ";
-      info += statesController[statesController.length - 1].text;
-      info += " }";
+      info += "q0 = ${statesController[0].text} \nF =  ";
+      info +=endText.toString();
+      info += " ";
     }
   }
 

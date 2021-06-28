@@ -88,7 +88,7 @@ class AuthTextFormFiled extends StatelessWidget {
                   : textColor),
           onChanged: onChange,
           maxLength: maxLength,
-          cursorColor: AppColors.PRIMARY,
+          cursorColor: AppColors.LIGHT_Red,
           inputFormatters: inputFormatter,
           decoration: inputDecoration(hintText, textColor)),
     );
@@ -121,14 +121,14 @@ class AuthTextFormFiled extends StatelessWidget {
   dynamic focusedBorder() {
     return OutlineInputBorder(
         borderRadius: AppStyles.borderRadiusAll(10.0),
-        borderSide: BorderSide(color: AppColors.PRIMARY, width: 0.7));
+        borderSide: BorderSide(color: AppColors.LIGHT_Red, width: 0.7));
   }
 
   dynamic icon() {
     return Padding(
       padding: EdgeInsets.only(right: 10.0.sp),
       child: SvgPicture.asset("$svgPath",
-          color: iconColor ?? AppColors.PRIMARY,
+          color: iconColor ?? AppColors.LIGHT_Red,
           width: 20.0.sp,
           height: 20.0.sp),
     );
@@ -136,7 +136,7 @@ class AuthTextFormFiled extends StatelessWidget {
 
   dynamic decoration(Color? color) {
     return BoxDecoration(
-      border: Border.all(width: 0.7, color: AppColors.PRIMARY),
+      border: Border.all(width: 0.7, color: AppColors.LIGHT_Red),
       color: color == null
           ? Get.theme.brightness == Brightness.light
           ? AppColors.WHITE

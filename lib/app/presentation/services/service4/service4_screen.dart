@@ -25,6 +25,8 @@ class _Service4ScreenState extends State<Service4Screen>
       child: Scaffold(
         body: PrimaryBackground(
           child: ListView(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
             padding: EdgeInsets.all(20),
             children: [
               Card(
@@ -183,7 +185,10 @@ class _Service4ScreenState extends State<Service4Screen>
                       rows.add([]);
                       for (int j = 0; j < alphabetController.length; ++j) {
                         Set<int> data = tableController[i][j].item1;
-                        rows[i].add(data.first + 1);
+                        if (data.isNotEmpty)
+                          rows[i].add(data.first + 1);
+                        else
+                          rows[i].add(0);
                       }
                     }
                     automate.delta = rows;

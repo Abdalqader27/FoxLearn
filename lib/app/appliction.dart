@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,6 +32,8 @@ class Application extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.scaffoldBackground,
         ),
         themeMode: ThemeMode.light,
+        navigatorObservers: [BotToastNavigatorObserver()],
+
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

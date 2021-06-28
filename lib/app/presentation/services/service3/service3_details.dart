@@ -76,7 +76,10 @@ class _Service3DetailsState extends State<Service3Details> {
                                   title: Text("الحالات "),
                                   subtitle: Padding(
                                     padding: const EdgeInsets.all(4.0),
-                                    child: Text(snapshot.data!.q.toString()),
+                                    child: Text(snapshot.data!.q
+                                        .toString()
+                                        .replaceAll("]", "")
+                                        .replaceAll("[", "")),
                                   ),
                                 ),
                               ),
@@ -87,8 +90,10 @@ class _Service3DetailsState extends State<Service3Details> {
                                   title: Text("اﻷبجدية "),
                                   subtitle: Padding(
                                     padding: const EdgeInsets.all(4.0),
-                                    child:
-                                        Text(snapshot.data!.segma.toString()),
+                                    child: Text(snapshot.data!.segma
+                                        .toString()
+                                        .replaceAll("]", "")
+                                        .replaceAll("[", "")),
                                   ),
                                 ),
                               ),
@@ -110,7 +115,10 @@ class _Service3DetailsState extends State<Service3Details> {
                                   title: Text("الحالات النهائية"),
                                   subtitle: Padding(
                                     padding: const EdgeInsets.all(4.0),
-                                    child: Text(snapshot.data!.end.toString()),
+                                    child: Text(snapshot.data!.end
+                                        .toString()
+                                        .replaceAll("]", "")
+                                        .replaceAll("[", "")),
                                   ),
                                 ),
                               ),
@@ -157,7 +165,9 @@ class _Service3DetailsState extends State<Service3Details> {
                                                 DataColumn(
                                                   label: Text(
                                                     snapshot.data!.segma[j]
-                                                        .toString(),
+                                                        .toString()
+                                                        .replaceAll("]", "")
+                                                        .replaceAll("[", ""),
                                                     style: TextStyle(
                                                         fontSize: 9.0.sp),
                                                   ),
@@ -172,7 +182,10 @@ class _Service3DetailsState extends State<Service3Details> {
                                                     DataCell(
                                                       Text(
                                                         snapshot.data!.q[i]
-                                                            .toString(),
+                                                            .toString()
+                                                            .replaceAll("]", "")
+                                                            .replaceAll(
+                                                                "[", ""),
                                                         style: TextStyle(
                                                             fontSize: 9.0.sp),
                                                       ),
@@ -187,7 +200,10 @@ class _Service3DetailsState extends State<Service3Details> {
                                                       DataCell(Text(
                                                         snapshot
                                                             .data!.delta[i][k]
-                                                            .toString(),
+                                                            .toString()
+                                                            .replaceAll("]", "")
+                                                            .replaceAll(
+                                                                "[", ""),
                                                         style: TextStyle(
                                                             fontSize: 9.0.sp),
                                                       ))

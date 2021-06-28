@@ -10,7 +10,7 @@ void showDataPicker(context, controller) async {
         DateHelper.dayFormat(DateTime(2000, 6, 7).toString());
   CupertinoRoundedDatePicker.show(
     context,
-    maximumDate: DateTime.now(),
+    maximumDate: DateTime(2003, 1, 1),
     minimumYear: 1950,
     fontFamily: AppFonts.sstArabicFont,
     textColor: AppColors.LIGHT_BLACK,

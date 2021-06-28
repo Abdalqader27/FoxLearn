@@ -45,8 +45,14 @@ class _Service1DetailsState extends State<Service1Details> {
                   children: [
                     PageView(
                       children: [
-                        StepsServices(data: snapshot.data!.stepOne,text: "الخطوة اﻷولى",),
-                        StepsServices(data: snapshot.data!.stepTwo,text: "الخطوة الثانية",),
+                        StepsServices(
+                          data: snapshot.data!.stepOne,
+                          text: "الخطوة اﻷولى",
+                        ),
+                        StepsServices(
+                          data: snapshot.data!.stepTwo,
+                          text: "الخطوة الثانية",
+                        ),
                       ],
                     ),
                   ],
@@ -62,7 +68,8 @@ class StepsServices extends StatefulWidget {
   final text;
   final dynamic data;
 
-  const StepsServices({Key? key, required this.data, this.text}) : super(key: key);
+  const StepsServices({Key? key, required this.data, this.text})
+      : super(key: key);
 
   @override
   _StepsServicesState createState() => _StepsServicesState(data);
@@ -106,7 +113,11 @@ class _StepsServicesState extends State<StepsServices> {
                       title: Text("الحالات "),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(data.p.toString()),
+                        child: Text(data.p
+                            .toSet()
+                            .toString()
+                            .replaceAll("}", "")
+                            .replaceAll("{", "")),
                       ),
                     ),
                   ),
@@ -117,7 +128,10 @@ class _StepsServicesState extends State<StepsServices> {
                       title: Text("اﻷبجدية "),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(data.segma.toString()),
+                        child: Text(data.segma
+                            .toString()
+                            .replaceAll("[", "")
+                            .replaceAll("]", "")),
                       ),
                     ),
                   ),
@@ -139,7 +153,11 @@ class _StepsServicesState extends State<StepsServices> {
                       title: Text("الحالات النهائية"),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Text(data.end.toString()),
+                        child: Text(data.end
+                            .toSet()
+                            .toString()
+                            .replaceAll("}", "")
+                            .replaceAll("{", "")),
                       ),
                     ),
                   ),

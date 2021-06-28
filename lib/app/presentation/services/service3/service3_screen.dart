@@ -27,20 +27,18 @@ class _Service3ScreenState extends State<Service3Screen>
     // TODO: implement initState
     super.initState();
     setState(() {
-      alphabetController.add(TextEditingController(
-        text: "eps"
-      ));
+      alphabetController.add(TextEditingController(text: "eps"));
       fieldAlphabet.add(TextField(
         readOnly: true,
         onChanged: (data) {
           setState(() {});
         },
-        controller:
-        alphabetController[alphabetController.length - 1],
+        controller: alphabetController[alphabetController.length - 1],
       ));
       addColumn(setState);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +57,11 @@ class _Service3ScreenState extends State<Service3Screen>
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
                   title: Text(
-                    "من اللاحتمي مع اوبسلن  إلى الحتمي ",
+                    "من اللاحتمي مع eps إلى الحتمي ",
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  subtitle:
-                      Text("للتحويل من اﻷتومات اللاحتمي مع اوبسلن إلى أتومات حتمي "),
+                  subtitle: Text(
+                      "للتحويل من اﻷتومات اللاحتمي مع eps  إلى أتومات حتمي "),
                 ),
               ),
             ),
@@ -93,7 +91,7 @@ class _Service3ScreenState extends State<Service3Screen>
                 });
               },
               title1: "الحالات",
-              title2: "الابجدية",
+              title2: "الأبجدية",
               children1: filedStates,
               children2: fieldAlphabet,
             ),
@@ -123,7 +121,7 @@ class _Service3ScreenState extends State<Service3Screen>
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "q0 =$firstText ",
+                              "q0 =${firstText.toString().replaceAll("}", "").replaceAll("{", "")} ",
                               style: TextStyle(
                                   fontSize: 11.0.sp, letterSpacing: 1.2),
                             ),
@@ -163,49 +161,64 @@ class _Service3ScreenState extends State<Service3Screen>
                 ),
               ],
             ),
-            theQuintuple(),
+            Visibility(
+                visible: statesController.isNotEmpty &&
+                    alphabetController.isNotEmpty &&
+                    firstText.isNotEmpty &&
+                    endText.isNotEmpty,
+                child: theQuintuple()),
             RoundedButton(
               onTap: () {
-                AutomateInput automate = AutomateInput(
-                    segma: [], q: [], start: '', delta: [], end: []);
+                if (statesController.isNotEmpty &&
+                    alphabetController.isNotEmpty &&
+                    firstText.isNotEmpty &&
+                    endText.isNotEmpty) {
+                  AutomateInput automate = AutomateInput(
+                      segma: [], q: [], start: '', delta: [], end: []);
 
-                for (int i = 0; i < statesController.length; ++i)
-                  automate.q.add(statesController[i].text.toString());
-                Logs.logger.i("q= " + automate.q.toString());
-
-// ------------------------------------------------------------------------------------------------------------
-                for (int i = 0; i < alphabetController.length; ++i)
-                  automate.segma.add(alphabetController[i].text.toString());
-                Logs.logger.i("segma= " + automate.segma.toString());
-// ------------------------------------------------------------------------------------------------------------
-
-                automate.start = firstText.first.toString();
-                Logs.logger.i("start= " + automate.start.toString());
+                  for (int i = 0; i < statesController.length; ++i)
+                    automate.q.add(statesController[i].text.toString());
+                  Logs.logger.i("q= " + automate.q.toString());
 
 // ------------------------------------------------------------------------------------------------------------
-                endText.forEach((element) {
-                  automate.end.add(element);
-                });
-                Logs.logger.i("end= " + automate.end.toString());
+                  for (int i = 0; i < alphabetController.length; ++i)
+                    automate.segma.add(alphabetController[i].text.toString());
+                  Logs.logger.i("segma= " + automate.segma.toString());
+// ------------------------------------------------------------------------------------------------------------
 
-                List<List<int>> rows = [];
-                for (int i = 0; i < statesController.length; ++i) {
-                  rows.add([]);
-                  for (int j = 0; j < alphabetController.length; ++j) {
-                    Set<int> data = tableController[i][j].item1;
-                    int sum = 0;
-                    data.forEach((element) {
-                      sum += 1 << element;
-                    });
-                    rows[i].add(sum);
+                  automate.start = firstText.first.toString();
+                  Logs.logger.i("start= " + automate.start.toString());
+
+// ------------------------------------------------------------------------------------------------------------
+                  endText.forEach((element) {
+                    automate.end.add(element);
+                  });
+                  Logs.logger.i("end= " + automate.end.toString());
+
+                  List<List<int>> rows = [];
+                  for (int i = 0; i < statesController.length; ++i) {
+                    rows.add([]);
+                    for (int j = 0; j < alphabetController.length; ++j) {
+                      Set<int> data = tableController[i][j].item1;
+                      int sum = 0;
+                      data.forEach((element) {
+                        sum += 1 << element;
+                      });
+                      rows[i].add(sum);
+                    }
                   }
-                }
-                automate.delta = rows;
-                Logs.logger.i("delta= " + rows.toString());
+                  automate.delta = rows;
+                  Logs.logger.i("delta= " + rows.toString());
 
-                Get.to(() => Service3Details(
-                      automate: automate,
-                    ));
+                  Get.to(() => Service3Details(
+                        automate: automate,
+                      ));
+                } else {
+                  Get.snackbar("تنبيه !!!", "يرجى التحقق من المدخلات ",
+                      backgroundColor: AppColors.LIGHT_Red,
+                      margin: EdgeInsets.all(10),
+                      snackPosition: SnackPosition.BOTTOM);
+                }
               },
               color: AppColors.LIGHT_Red,
               myChild: Text(
