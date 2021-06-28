@@ -66,7 +66,12 @@ class _FilePageState extends State<FilePage> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    animationController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return getPopularCourseUI();
@@ -232,4 +237,5 @@ class CategoryView extends StatelessWidget {
       },
     );
   }
+
 }

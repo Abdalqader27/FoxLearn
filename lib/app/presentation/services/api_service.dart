@@ -11,7 +11,7 @@ class ApiService with DioClientMixin {
     ));
     List<ServiceModel> list = [];
     response.forEach((data) => list.add(ServiceModel.fromJson(data)));
-
+print(list.length);
     return list;
   }
 }

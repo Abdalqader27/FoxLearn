@@ -33,47 +33,42 @@ class HomeScreen extends StatelessWidget with HomeImplements {
       },
       child: Column(
         children: [
-          TextButton(
-              onPressed: () async {
-                Get.find<AppController>().logout();
-              },
-              child: Text("تسجيل الخروج ")),
-          Card(
-            elevation: 0,
-            child: ListTile(
-              onTap: () {
-                Get.to(() => ServicesOneScreen());
-              },
-              title: Text("الخدمة الاولى"),
-            ),
-          ),
-          Card(
-            elevation: 0,
-            child: ListTile(
-              onTap: () {
-                Get.to(() => Service2Screen());
-              },
-              title: Text("الخدمة الثانية"),
-            ),
-          ),
-          Card(
-            elevation: 0,
-            child: ListTile(
-              onTap: () {
-                Get.to(() => Service3Screen());
-              },
-              title: Text("الخدمة الثالثة"),
-            ),
-          ),
-          Card(
-            elevation: 0,
-            child: ListTile(
-              onTap: () {
-                Get.to(() => Service4Screen());
-              },
-              title: Text("الخدمة الرابعة"),
-            ),
-          ),
+          // Card(
+          //   elevation: 0,
+          //   child: ListTile(
+          //     onTap: () {
+          //       Get.to(() => ServicesOneScreen());
+          //     },
+          //     title: Text("الخدمة الاولى"),
+          //   ),
+          // ),
+          // Card(
+          //   elevation: 0,
+          //   child: ListTile(
+          //     onTap: () {
+          //       Get.to(() => Service2Screen());
+          //     },
+          //     title: Text("الخدمة الثانية"),
+          //   ),
+          // ),
+          // Card(
+          //   elevation: 0,
+          //   child: ListTile(
+          //     onTap: () {
+          //       Get.to(() => Service3Screen());
+          //     },
+          //     title: Text("الخدمة الثالثة"),
+          //   ),
+          // ),
+          // Card(
+          //   elevation: 0,
+          //   child: ListTile(
+          //     onTap: () {
+          //       Get.to(() => Service4Screen());
+          //     },
+          //     title: Text("الخدمة الرابعة"),
+          //   ),
+          // ),
 
           /// tab bar between the repeater (courses ) and banks -----------------------
           SvgPicture.asset(Assets.svgFox),

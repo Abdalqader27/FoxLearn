@@ -11,7 +11,7 @@ class ApiRoutes {
   static const String PosLocation = BASE_API + "User/GetPosLocations";
   static const String Test = BASE_API + "Question/GetQuestions";
   static const String Subjects = BASE_API + "Subject/GetSubjects";
-  static const String Services = BASE_API + "Service/GetServices";
+  static const String Services = BASE_API + "Service/GetServicesApi";
 
   /// _____________________AD Sections_________________________________________________
   ///

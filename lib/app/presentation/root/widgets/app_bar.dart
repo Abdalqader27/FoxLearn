@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foxlearn/app/controllers/app_controller/app_controller.dart';
 import 'package:foxlearn/common/widgets/circle_button.dart';
 import 'package:foxlearn/generated/assets.dart';
 import 'package:foxlearn/resources/theme/colors.dart';
 import 'package:foxlearn/resources/theme/text_styles.dart';
+import 'package:foxlearn/resources/values/styles.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppAppBar extends StatelessWidget {
@@ -26,6 +29,14 @@ class AppAppBar extends StatelessWidget {
               style: AppTextStyles.title().copyWith(color: AppColors.WHITE),
             ),
           ),
+          TextButton(
+            style: TextButton.styleFrom(backgroundColor: AppColors.WHITE,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+              onPressed: () async {
+                Get.find<AppController>().logout();
+              },
+              child: Text("تسجيل الخروج ",style: TextStyle(color: AppColors.LIGHT_Red),)),
+
           // CircleButton(
           //   onTap: () {},
           //   icon: Assets.svgSearch,

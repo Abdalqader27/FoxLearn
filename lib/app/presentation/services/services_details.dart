@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:foxlearn/app/presentation/services/service_controller.dart';
 import 'package:foxlearn/app/presentation/services/service_model.dart';
 import 'package:foxlearn/app/presentation/services/services_screen.dart';
+import 'package:foxlearn/app/presentation/widgets/empty.dart';
 import 'package:foxlearn/app/presentation/widgets/lottie_loading.dart';
 import 'package:foxlearn/common/widgets/background/welcome_background.dart';
 import 'package:foxlearn/generated/assets.dart';
@@ -28,46 +29,49 @@ class ServiceDetails extends GetView<ServiceController> {
       child: Scaffold(
           body: WelcomeBackground(
         child: controller.obx(
-            (state) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Card(
-                      elevation: 0,
-                      shape: AppStyles.cardStyle1,
-                      color: AppColors.LIGHT_Red,
-                      child: Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Text(
-                          state!.first.subjectName.toString(),
-                          style: AppTextStyles.medium(fontWeight: FontWeight.bold).copyWith(color: AppColors.White),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Center(
-                          child: Stack(
-                            children: <Widget>[
-                              CardScrollWidget(controller.currentPage, state),
-                              Positioned.fill(
-                                child: PageView.builder(
-                                  itemCount: state.length,
-                                  controller: controller.controller,
-                                  reverse: true,
-                                  itemBuilder: (context, index) {
-                                    return Container();
-                                  },
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+          (state) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Card(
+                elevation: 0,
+                shape: AppStyles.cardStyle1,
+                color: AppColors.LIGHT_Red,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Text(
+                    state!.first.subjectName.toString(),
+                    style: AppTextStyles.medium(fontWeight: FontWeight.bold)
+                        .copyWith(color: AppColors.White),
+                  ),
                 ),
-            onLoading: LottieLoading()),
+              ),
+              Expanded(
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Center(
+                    child: Stack(
+                      children: <Widget>[
+                        CardScrollWidget(controller.currentPage, state),
+                        Positioned.fill(
+                          child: PageView.builder(
+                            itemCount: state.length,
+                            controller: controller.controller,
+                            reverse: true,
+                            itemBuilder: (context, index) {
+                              return Container();
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          onLoading: LottieLoading(),
+          onEmpty: EmptyWidget(text: "لايوجد عناصر",),
+        ),
       )),
     );
   }

@@ -38,10 +38,8 @@ var widgetAspectRatio = cardAspectRatio * 1.2;
 // ];
 
 class _ServicesScreenState extends State<ServicesScreen> {
-
   @override
   Widget build(BuildContext context) {
-
     return Container(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -72,6 +70,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                     shape: AppStyles.cardStyle1,
                                     child: ListTile(
                                       onTap: () {
+                                        print("click");
                                         Get.to(() => ServiceDetails(e.id));
                                       },
                                       title: Padding(
@@ -136,9 +135,3 @@ class _ServicesScreenState extends State<ServicesScreen> {
     );
   }
 }
-
-
-
-
-
-

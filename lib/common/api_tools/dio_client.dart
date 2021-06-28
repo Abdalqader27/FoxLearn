@@ -54,6 +54,9 @@ class DioClient {
     try {
       if (auth) {
         final token = LocalDataSource.user!.token;
+        print("Token : "+"$token");
+
+
         final header = {'authorization': 'Bearer $token'};
         if (options == null) {
           options = Options(headers: {'authorization': 'Bearer $token'});
@@ -90,6 +93,7 @@ class DioClient {
     try {
       if (auth) {
         final token = LocalDataSource.user!.token;
+        print("Token : "+token);
         final header = {'authorization': 'Bearer $token'};
         if (options == null) {
           options = Options(headers: {'authorization': 'Bearer $token'});

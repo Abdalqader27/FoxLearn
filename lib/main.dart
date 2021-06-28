@@ -1,6 +1,7 @@
 import 'package:catcher/core/catcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,7 +30,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kDebugMode) _initMoorInspector(LocalDataSource.appDatabase);
   //final _init = Firebase.initializeApp();
-
+SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   /// init build
   dynamic init() {
     Get.put<AppController>(AppController(AppState.loggedIn().obs));

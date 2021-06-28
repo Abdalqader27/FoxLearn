@@ -11,14 +11,14 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen>
     with SingleTickerProviderStateMixin, UserScreenImplement {
-  late AnimationController animationController;
+  // late AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
-    animationController.forward();
+    // animationController =
+    //     AnimationController(vsync: this, duration: Duration(seconds: 3));
+    // animationController.forward();
   }
 
   @override
@@ -46,7 +46,7 @@ class _UserScreenState extends State<UserScreen>
         // ),
 
         /// Body of tabBar view
-        Expanded(child: tabBarView(animationController))
+        Expanded(child: tabBarView())
       ])),
     );
   }

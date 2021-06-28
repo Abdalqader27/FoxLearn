@@ -1,7 +1,6 @@
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:foxlearn/app/presentation/check_app_version/check_app_version.dart';
 import 'package:foxlearn/common/router/app_pages.dart';
 import 'package:foxlearn/my_app.dart';
 import 'package:foxlearn/resources/theme/colors.dart';

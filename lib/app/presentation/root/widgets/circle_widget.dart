@@ -25,7 +25,7 @@ class Circle extends StatelessWidget {
         height: dim.h,
         child: child,
         decoration: BoxDecoration(
-            border: Border.all(width: widthOfBorder ?? 2.5, color: borderColor),
+            border: Border.all(width: widthOfBorder, color: borderColor),
             color: backGroundColor,
             shape: BoxShape.circle),
       ),

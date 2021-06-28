@@ -22,15 +22,22 @@ class ServiceController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    change(value, status: RxStatus.loading());
+
     ApiService().getServices(id).then((value) {
       currentPage = value.length - 1;
       controller = PageController(initialPage: value.length - 1);
       controller.addListener(() {
         currentPage = controller.page!;
-        change(value, status: RxStatus.success());
-
+        if (value.isEmpty)
+          change(value, status: RxStatus.empty());
+        else
+          change(value, status: RxStatus.success());
       });
-      change(value, status: RxStatus.success());
+      if (value.isEmpty)
+        change(value, status: RxStatus.empty());
+      else
+        change(value, status: RxStatus.success());
     });
   }
 }

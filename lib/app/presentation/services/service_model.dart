@@ -1,36 +1,44 @@
 /// id : 11
 /// subjectId : 1
-/// subjectName : "اللغات الصورية"
-/// title : "converting from non deterministic to deterministic"
-/// description : "converting-from-non-deterministic-to-deterministic converting-from-non-deterministic-to-deterministic"
+/// subjectName : "Logate_Sowarya"
+/// title : "تحويل من أتومات منتهي لا حتمي إلى حتمي"
+/// description : "أداة تقوم بتحويل الأتومات المنتهي اللاحتمي إلى حتمي وفقاً لدخل معين وبشكل ديناميكي"
 /// price : 90000
 /// url : "Services Images/9af799f1-d505-4c89-9258-b5376068a7f2%s274px-DFAexample.svg.png"
+/// route : "converting from non deterministic to deterministic"
+/// isActivated : false
 
 class ServiceModel {
-  int? _id;
-  int? _subjectId;
-  String? _subjectName;
-  String? _title;
-  String? _description;
-  int? _price;
-  String? _url;
+  dynamic _id;
+  dynamic? _subjectId;
+  dynamic? _subjectName;
+  dynamic? _title;
+  dynamic? _description;
+  dynamic? _price;
+  dynamic? _url;
+  dynamic? _route;
+  dynamic? _isActivated;
 
-  int? get id => _id;
-  int? get subjectId => _subjectId;
-  String? get subjectName => _subjectName;
-  String? get title => _title;
-  String? get description => _description;
-  int? get price => _price;
-  String? get url => _url;
+  dynamic? get id => _id;
+  dynamic? get subjectId => _subjectId;
+  dynamic? get subjectName => _subjectName;
+  dynamic? get title => _title;
+  dynamic? get description => _description;
+  dynamic? get price => _price;
+  dynamic? get url => _url;
+  dynamic? get route => _route;
+  dynamic? get isActivated => _isActivated;
 
   ServiceModel({
-      int? id, 
-      int? subjectId, 
-      String? subjectName, 
-      String? title, 
-      String? description, 
-      int? price, 
-      String? url}){
+    dynamic? id,
+    dynamic? subjectId,
+    dynamic? subjectName,
+    dynamic? title,
+    dynamic? description,
+    dynamic? price,
+    dynamic? url,
+    dynamic? route,
+    dynamic? isActivated}){
     _id = id;
     _subjectId = subjectId;
     _subjectName = subjectName;
@@ -38,6 +46,8 @@ class ServiceModel {
     _description = description;
     _price = price;
     _url = url;
+    _route = route;
+    _isActivated = isActivated;
 }
 
   ServiceModel.fromJson(dynamic json) {
@@ -48,6 +58,8 @@ class ServiceModel {
     _description = json["description"];
     _price = json["price"];
     _url = json["url"];
+    _route = json["route"];
+    _isActivated = json["isActivated"];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +71,8 @@ class ServiceModel {
     map["description"] = _description;
     map["price"] = _price;
     map["url"] = _url;
+    map["route"] = _route;
+    map["isActivated"] = _isActivated;
     return map;
   }
 
